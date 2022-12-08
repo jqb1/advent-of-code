@@ -18,11 +18,7 @@ print(actual_input)
 
 resp = None
 for i in range(14, len(actual_input)):
-    if len(set(actual_input[i-14:i]))==14:
+    if len(set(actual_input[i - 14:i])) == 14:
         resp = i
         break
 print(resp)
-
-
-
-
