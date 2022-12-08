@@ -1,15 +1,4 @@
-# def read_input():
-#     with open("/Users/jkoziol/Downloads/input.txt") as f:
-#         moves = [line.rstrip() for line in f]
-#     return moves
-#
-#
-# print(read_input())
-# lines = read_input()
-# print(lines)
-
-real_input = """
-113003322412033102023303501444545044215232525401341546163452453404402234201151432242402140110220101
+trees = """113003322412033102023303501444545044215232525401341546163452453404402234201151432242402140110220101
 332001304022012142421445502213221330453061535265122314201352335233021055055200345412200440033322200
 011113132214324432134325045311145402450516101640412524056254134552334050434552541351100000142223210
 120100233011423423144030334144351644642605521663331053414601341464201040045104150001214204243212330
@@ -107,52 +96,21 @@ real_input = """
 311142442400021052335032430131001522121243633355511015105456130306054020525345400331240114301233431
 303333210333101445104545232532514231420245342044224564606555504302423403203123103211431303412444103
 322112022033322224210512330414230625446520203533135512231066520423212314402311345154232414213413203
-210220340333424334214524143431005502542403323230305103516410534415015522312221415410344021130000212
-"""
+210220340333424334214524143431005502542403323230305103516410534415015522312221415410344021130000212"""
 
-test_input = """
-30373
-25512
-65332
-33549
-35390
-"""
-trees = real_input.strip().split()
-trees = [list(row) for row in trees]
-row_len = len(trees[0])
-col_len = len(trees)
-count = 0
+trees = trees.strip().split()
+trees = [list(map(int, list(t))) for t in trees]
+print(trees)
 
-max_scientific_score = 0
-
-
-def get_viewed_trees(source_tree, tree_range):
-    c = 0
-    for tree in tree_range:
-        if source_tree > int(tree):
+c = 0
+for i in range(len(trees)):
+    for j in range(len(trees[0])):
+        tree = trees[i][j]
+        x = any([all(trees[i][x] < tree for x in range(j + 1, len(trees[0]))),
+                 all(trees[i][x] < tree for x in range(0, j)),
+                 all(trees[x][j] < tree for x in range(0, i)),
+                 all(trees[x][j] < tree for x in range(i + 1, len(trees)))])
+        if x:
             c += 1
-        else:
-            c += 1
-            return c
-    return c
 
-
-trees_cols = list(zip(*trees))
-# part2
-for i in range(len(trees)-1):
-    for j in range(row_len-1):
-        # left
-        l = [tree for tree in trees[i][:j]][::-1]
-        s1 = get_viewed_trees(int(trees[i][j]), l)
-        r = [tree for tree in trees[i][j + 1:]]
-        s2 = get_viewed_trees(int(trees[i][j]), r)
-        up = [tree for tree in trees_cols[j][:i]][::-1]
-        s3 = get_viewed_trees(int(trees[i][j]), up)
-        down = [tree for tree in trees_cols[j][i + 1:]]
-        s4 = get_viewed_trees(int(trees[i][j]), down)
-
-        mult = s1 * s2 * s3 * s4
-        if mult > max_scientific_score:
-            max_scientific_score = mult
-
-print(max_scientific_score)
+print(c)
