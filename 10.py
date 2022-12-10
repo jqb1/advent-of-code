@@ -5,15 +5,16 @@ def read_input():
 
 
 X = 1  # During the first cycle, X is 1
-cycle_now = 0
+cycle_now = 1
 cycles_strngs = (20, 60, 100, 140, 180, 220)
 signal_strengths = []
 
 screen = ""
 line_len = 0
 for line in read_input():
+    print(line, cycle_now, X)
     line = line.split()
-    print(line)
+    # print(line)
     cycles_td = 1 if line[0] == "noop" else 2
     for cycle in range(cycles_td):
         if any(pixel == cycle_now % 40 for pixel in (X-1, X, X+1,)):
