@@ -24,7 +24,7 @@ root.insert_child(c)
 a.insert_child(e)
 
 
-def bfs(root_):
+def dfs(root_):
     print(root_)
     q = deque([root_])
     while q:
@@ -32,3 +32,21 @@ def bfs(root_):
         for child in curr.children:
             q.append(child)
             print(child.name)
+
+
+def bubble_sort(list_):
+    list_sorted = False
+    while not list_sorted:
+        results = []
+        for i in range(len(list_) - 1):
+            l1 = list_[i]
+            l2 = list_[i + 1]
+            order = l1 < l2
+            if not order:
+                list_[i] = l2
+                list_[i + 1] = l1
+                results.append(False)
+            else:
+                results.append(True)
+        if all(results):
+            list_sorted = True

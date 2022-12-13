@@ -1,3 +1,7 @@
+from collections import defaultdict
+from copy import copy
+
+
 def read_input():
     with open("/Users/jkoziol/Downloads/input.txt") as f:
         lines = [line.rstrip() for line in f]
@@ -8,18 +12,21 @@ print(read_input()[0])
 
 
 def day_change(lat, r):
-    lats_to_add = []
+    d = defaultdict(int)
+    for l_ in lat:
+        d[l_] += 1
     for day in range(r):
-        for i in range(len(lat)):
-            print(day)
-            if lat[i] == 0:
-                lat[i] = 6
-                lats_to_add.append(8)
+        zc = 0
+        d_next = defaultdict(int)
+        for k, v in d.items():
+            if k == 0:
+                zc += d[k]
             else:
-                lat[i] -= 1
-        lat.extend(lats_to_add)
-        lats_to_add.clear()
-    return lat
+                d_next[k-1] = d[k]
+        d_next[6] += zc
+        d_next[8] += zc
+        d = copy(d_next)
+    return d
 
 
 # each lanternfish creates a new lanternfish once every 7 days
@@ -29,13 +36,5 @@ laterns = list(map(int, read_input()[0].split(',')))
 laterns_to_add = []
 print(laterns)
 
-# task1
-# laterns = day_change(laterns, 80)
-
-left = 256
-lats_cnt = len(laterns)
-day_ = 0
-# doubles every 7 days
-day = 252
-
-print(len(laterns))
+laterns = day_change(laterns, 256)
+print(sum(laterns.values()))

@@ -62,6 +62,7 @@ def main():
     s_point = (s_point[0], s_point[1], 0)
 
     shortest = 9000
+    # part 1 without this loop
     for r in range(len(grid)):
         for c in range(len(grid[0])):
             if grid[r][c] == 'a':
