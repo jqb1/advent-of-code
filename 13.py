@@ -11,19 +11,19 @@ def compare_list_items(ll, lr):
         except IndexError:
             print(ll, lr, "Right side ran out of items")
             return False
-        if type(ll[i]) is list and type(lr[i]) is list:
+        if isinstance(ll[i], list) and isinstance(lr[i], list):
             result = compare_list_items(ll[i], lr[i])
             if result != 'Draw':
                 return result
-        elif type(ll[i]) is int and type(lr[i]) is list:
+        elif isinstance(ll[i], int) and isinstance(lr[i], list):
             result = compare_list_items([ll[i]], lr[i])
             if result != 'Draw':
                 return result
-        elif type(ll[i]) is list and type(lr[i]) is int:
+        elif isinstance(ll[i], list) and isinstance(lr[i], int):
             result = compare_list_items(ll[i], [lr[i]])
             if result != 'Draw':
                 return result
-        elif type(ll[i]) is int and type(lr[i]) is int:
+        elif isinstance(ll[i], int) and isinstance(lr[i], int):
             if ll[i] > lr[i]:
                 print(ll[i], lr[i], "Right side is smaller")
                 return False
