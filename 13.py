@@ -39,6 +39,7 @@ packets_sorted = False
 packets.extend([[[2]], [[6]]])
 
 # bubble sort
+# could also change sorted() key
 while not packets_sorted:
     results = []
     for i in range(len(packets) - 1):
