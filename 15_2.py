@@ -17,7 +17,6 @@ possible_points = set()
 def main():
     sensors = set()
     distances = set()
-
     possible_points = set()
 
     for line in read_input():
