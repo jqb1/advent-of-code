@@ -3,7 +3,7 @@ from collections import defaultdict, deque
 
 
 def read_input():
-    with open("/Users/jkoziol/Downloads/input_t.txt") as f:
+    with open("/Users/jkoziol/Downloads/input.txt") as f:
         lines = [line.rstrip() for line in f]
     return lines
 
@@ -33,40 +33,58 @@ def main():
     open_valves = []
     print('valves', valves)
     print('tunnels', tunnels)
-    q = deque([(current_valve, 30, 0, tuple(), current_valve)])
-    search_flow_rate(q, tunnels, valves, nonzero)
+    # q = deque([(current_valive, 30, 0, tuple(), current_valve)])
+    distances = search_flow_rate(tunnels, valves)
+    print(distances)
+    bfs_max_pressure(distances, valves)
+
 
 #  1547 is to high 1463, too high
+def search_flow_rate(tunnels, valves):
+    distances = defaultdict(dict)
 
-def search_flow_rate(q, tunnels, valves, nonzero):
-    s = set()
-    paths = set()
-    max_pres = 0
-    only_turned = False
+    # store cost of traversing to all the non zero valves
+    for rval in valves:
+        q = deque([(rval, 0)])
+        visited = {rval}
+        while q:
+            valve, distance = q.popleft()
+            for neighbor in tunnels[valve]:
+                if neighbor in visited:
+                    continue
+                if valves[neighbor]:
+                    distances[rval][neighbor] = distance + 1
+                q.append((neighbor, distance + 1))
+                visited.add(neighbor)
+    return distances
+
+
+def bfs_max_pressure(distances, valves):
+    minutes, turned = 30, tuple()
+    q = deque([('AA', 30, turned, 0)])
+    cur_max = 0
     while q:
-        current_valve, minutes, current_pres, turned, path = q.popleft()
-        # if path in paths:
-        #     continue
-        # if current_pres < max_pres//2:
-        #     continue
-        print(current_valve, minutes, current_pres, max_pres, turned, path)
-        if minutes == 0 or set(turned) == nonzero:
-            # s.add(current_pres)
-            print(current_valve, minutes, current_pres, max_pres, turned, path)
+        valve, minutes, turned, pres = q.popleft()
+        print(valve, minutes, pres, cur_max, turned)
+        if minutes == 0:
+            print(minutes, turned, pres, cur_max)
+            if pres > cur_max:
+                cur_max = pres
+            continue
+        if valve not in turned and minutes - 1 > 0 and valve !='AA':
+            minutes -= 1
+            # pressure that will be produced from now up until the end of 30min time
+            pres += minutes * valves[valve]
+            if pres > cur_max:
+                cur_max = pres
+            turned += (valve, )
 
-        if current_valve in nonzero and minutes - 1 >= 0 and current_valve not in turned:
-            # if not (current_valve == "CC" and minutes == 27):
-                turned += (current_valve, )
-                minutes -= 1
-                current_pres += minutes * valves[current_valve]  # pressure that it'll generate
-                if current_pres > max_pres:
-                    max_pres = current_pres
-
-        for n in tunnels[current_valve]:
-            q.append((n, minutes - 1, current_pres, turned, path + f"/{n}"))
-
-    print(s)
-
+        for neighbor, cost in distances[valve].items():
+            if neighbor not in turned:
+                if minutes - cost > 0:
+                    q.append((neighbor, minutes - cost, turned, pres))
+                else:
+                    continue
 
 if __name__ == '__main__':
     main()
