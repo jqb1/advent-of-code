@@ -28,7 +28,6 @@ def read_reports(reports):
 def main():
     # print(read_input())
 
-    minutes = 30
     valves, tunnels, current_valve, nonzero = read_reports(read_input())
     open_valves = []
     print('valves', valves)
@@ -36,10 +35,14 @@ def main():
     # q = deque([(current_valive, 30, 0, tuple(), current_valve)])
     distances = search_flow_rate(tunnels, valves)
     print(distances)
-    bfs_max_pressure(distances, valves)
+
+    minutes = 26
+    cur_max, turned = bfs_max_pressure(distances, valves, minutes, tuple())
+    print(cur_max)
+    mymax, turned = bfs_max_pressure(distances, valves, minutes, turned)
+    print(cur_max + mymax, turned)
 
 
-#  1547 is to high 1463, too high
 def search_flow_rate(tunnels, valves):
     distances = defaultdict(dict)
 
@@ -59,25 +62,25 @@ def search_flow_rate(tunnels, valves):
     return distances
 
 
-def bfs_max_pressure(distances, valves):
-    minutes, turned = 30, tuple()
-    q = deque([('AA', 30, turned, 0)])
+def bfs_max_pressure(distances, valves, tlimit, turned):
+    q = deque([('AA', tlimit, turned, 0)])
     cur_max = 0
+    max_path_turned = tuple()
     while q:
         valve, minutes, turned, pres = q.popleft()
-        print(valve, minutes, pres, cur_max, turned)
         if minutes == 0:
-            print(minutes, turned, pres, cur_max)
             if pres > cur_max:
                 cur_max = pres
             continue
-        if valve not in turned and minutes - 1 > 0 and valve !='AA':
+        if valve not in turned and minutes - 1 > 0 and valve != 'AA':
             minutes -= 1
             # pressure that will be produced from now up until the end of 30min time
             pres += minutes * valves[valve]
-            if pres > cur_max:
-                cur_max = pres
             turned += (valve, )
+            if pres > cur_max:
+                print(cur_max, turned)
+                cur_max = pres
+                max_path_turned = turned
 
         for neighbor, cost in distances[valve].items():
             if neighbor not in turned:
@@ -85,6 +88,8 @@ def bfs_max_pressure(distances, valves):
                     q.append((neighbor, minutes - cost, turned, pres))
                 else:
                     continue
+    return cur_max, max_path_turned
+
 
 if __name__ == '__main__':
     main()
