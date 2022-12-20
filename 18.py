@@ -1,5 +1,6 @@
 import numpy as np
 import scipy.ndimage
+import matplotlib.pyplot as plt
 
 
 def read_input():
@@ -28,7 +29,7 @@ def main():
     for cube in cubes:
         x, y, z = cube
         droplet[x][y][z] = 1
-
+    # part1
     print(all_cubes_cords(droplet))
     c = 0
     all_cubes = all_cubes_cords(droplet)
@@ -45,6 +46,12 @@ def main():
 
     print(c_2)
 
+    # display the shape for fun
+    ax = plt.axes(projection='3d')
+    ax.set_facecolor("#6666ff")
+    ax.voxels(filled_droplet, facecolor="#E02050", edgecolor='white')
+    ax.axis("off")
+    plt.show()
 
 def count_external_sides(cube, all_cords):
     x, y, z = cube
