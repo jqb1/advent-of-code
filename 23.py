@@ -1,3 +1,4 @@
+import sys
 from collections import deque
 
 
@@ -22,23 +23,16 @@ CHECK_DIR = {
 }
 
 
-def main():
-    grove = [['.'] * 150 for _ in range(150)]
-
-    grove_in = [list(row) for row in read_input()]
-    for r in range(len(grove_in)):
-        for c in range(len(grove_in[0])):
-            grove[r+50][c+50] = grove_in[r][c]
-
+def main(part):
+    grove = [list(row) for row in read_input()]
     directions_q = deque(['n', 's', 'w', 'e'])
+    elf_positions = {(row, col) for row in range(len(grove)) for col in range(len(grove[0])) if grove[row][col] == "#"}
 
-    for _ in range(10):
+    for round_ in range(10 if part == 1 else 10000):
         dont_move = set()
         prop_moves = set()
 
-        new_positions = {}
-
-        elf_positions = {(row, col) for row in range(len(grove)) for col in range(len(grove[0])) if grove[row][col] == "#"}
+        proposed_positions = {}
 
         # proposing steps
         for elf_pos in elf_positions:
@@ -46,10 +40,6 @@ def main():
             new_dir = None
             for dir_ in directions_q:
                 if check_dir(elf_pos, dir_, elf_positions):
-                    dr, dc = DIRECTION[dir_]
-                    # needs to be removed, instead extend the grove
-                    # if elf_pos[0] + dr < 0 or elf_pos[0] + dr >= max_row or elf_pos[1] + dc >= max_col or elf_pos[1] + dc < 0:
-                    #     continue
                     new_dir = dir_ if not new_dir else new_dir
                 else:
                     neighbor_count += 1
@@ -60,36 +50,42 @@ def main():
                     dont_move.add(new_pos)
                 else:
                     prop_moves.add(new_pos)
-                new_positions[elf_pos] = new_pos
+                proposed_positions[elf_pos] = new_pos
 
         # moving step
-        r_inserted, c_inserted = 0, 0
+        new_elf_pos = set()
+        c = 0
         for elf_pos in elf_positions:
-            new_pos = new_positions.get(elf_pos)
+            new_pos = proposed_positions.get(elf_pos)
             if new_pos and new_pos not in dont_move:
-                # if new_pos[0] < 0 or new_pos[0] >= len(grove) or new_pos[1] >= len(grove[0]) or new_pos[1] < 0:
-                #     dr, dc = extend_grove(new_pos, grove, r_inserted, c_inserted)
-                #     r_inserted += dr
-                #     c_inserted += dc
-                # new_pos_r = new_pos[0] + (r_inserted if new_pos[0] < len(grove)-1 else 0)
-                # new_pos_c = new_pos[1] + (c_inserted if new_pos[1] < len(grove[0])-1 else 0)
-                # grove[new_pos_r][new_pos_c] = "#"
-                # grove[elf_pos[0]+r_inserted][elf_pos[1]+c_inserted] = "."
-                grove[new_pos[0]][new_pos[1]] = "#"
-                grove[elf_pos[0]][elf_pos[1]] = "."
+                new_elf_pos.add(new_pos)
+                c += 1
+            else:
+                new_elf_pos.add(elf_pos)
         #  end of the round, the first direction is moved to the end of the list of directions
+        if c == 0 and part == 2:
+            print(round_ + 1)
+            sys.exit(0)
         d = directions_q.popleft()
         directions_q.append(d)
+        elf_positions = new_elf_pos
 
-    elf_positions = {(row, col) for row in range(len(grove)) for col in range(len(grove[0])) if grove[row][col] == "#"}
-
-    for r in grove:
-        print(' '.join([c for c in r]))
     print(elf_positions)
     min_row_, min_col_ = min(elf_positions, key=lambda x: x[0])[0], min(elf_positions, key=lambda x: x[1])[1]
     max_row_, max_col_ = max(elf_positions, key=lambda x: x[0])[0], max(elf_positions, key=lambda x: x[1])[1]
+    display_positions(elf_positions, max_row_, min_row_, max_col_, min_col_)
     print(min_row_, min_col_, max_row_, max_col_)
-    print(((max_col_-min_col_+1) * (max_row_ - min_row_+1)) - len(elf_positions))
+    print(((max_col_ - min_col_ + 1) * (max_row_ - min_row_ + 1)) - len(elf_positions))
+
+
+def display_positions(elf_positions, max_row, min_row, max_col, min_col):
+    row_num, col_num = abs(max_row - min_row), abs(max_col - min_col)
+    grove = [['.'] * (col_num + 1) for _ in range(row_num + 1)]
+    for pos in elf_positions:
+        grove[pos[0] + abs(min_row)][pos[1] + abs(min_col)] = "#"
+
+    for r in range(len(grove)):
+        print(' '.join([grove[r][c] for c in range(len(grove[0]))]))
 
 
 def extend_grove(position, grove, r_inserted, c_inserted):
@@ -112,10 +108,11 @@ def extend_grove(position, grove, r_inserted, c_inserted):
 
 
 def check_dir(pos, direction, elf_positions):
-    if all((pos[0]+dr, pos[1] + dc) not in elf_positions for dr, dc in CHECK_DIR[direction]):
+    if all((pos[0] + dr, pos[1] + dc) not in elf_positions for dr, dc in CHECK_DIR[direction]):
         return True
     return False
 
 
 if __name__ == "__main__":
-    main()
+    main(part=1)
+    main(part=2)
