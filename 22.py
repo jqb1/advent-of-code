@@ -128,19 +128,19 @@ def wrap_cube(position, direction):
     def get_square(r, c, d, row, col):
         # square(row, col), direction: square(row,col), inside square(row, col), direction
         return {
-            (0, 1, 'u'): (3, 0, (col, 0), 'r'), #
-            (3, 0, 'l'): (0, 1, (0, row), 'd'), #
-            (0, 1, 'l'): (2, 0, (side_size - row -1, 0), 'r'), #
-            (2, 0, 'l'): (0, 1, (side_size - row -1, 0), 'r'),  #
-            (0, 2, 'u'): (3, 0, (side_size-1, col), 'u'), #
-            (3, 0, 'd'): (0, 2, (0, col), 'd'), #
-            (0, 2, 'r'): (2, 1, (side_size - row -1, side_size - 1), 'l'), #
-            (2, 1, 'r'): (0, 2, (side_size - row -1, side_size - 1), 'l'), #
-            (0, 2, 'd'): (1, 1, (col, side_size-1), 'l'), #
-            (1, 1, 'r'): (0, 2, (side_size - 1, row), 'u'), #
-            (1, 1, 'l'): (2, 0, (0, row), 'd'), #
-            (2, 0, 'u'): (1, 1, (col, 0), 'r'),#
-            (2, 1, 'd'): (3, 0, (col, side_size-1), 'l'), #
+            (0, 1, 'u'): (3, 0, (col, 0), 'r'),
+            (3, 0, 'l'): (0, 1, (0, row), 'd'),
+            (0, 1, 'l'): (2, 0, (side_size - row -1, 0), 'r'),
+            (2, 0, 'l'): (0, 1, (side_size - row -1, 0), 'r'),
+            (0, 2, 'u'): (3, 0, (side_size-1, col), 'u'),
+            (3, 0, 'd'): (0, 2, (0, col), 'd'),
+            (0, 2, 'r'): (2, 1, (side_size - row -1, side_size - 1), 'l'),
+            (2, 1, 'r'): (0, 2, (side_size - row -1, side_size - 1), 'l'),
+            (0, 2, 'd'): (1, 1, (col, side_size-1), 'l'),
+            (1, 1, 'r'): (0, 2, (side_size - 1, row), 'u'),
+            (1, 1, 'l'): (2, 0, (0, row), 'd'),
+            (2, 0, 'u'): (1, 1, (col, 0), 'r'),
+            (2, 1, 'd'): (3, 0, (col, side_size-1), 'l'),
             (3, 0, 'r'): (2, 1, (side_size- 1, row), 'u'),
         }[r, c, d]
     sq_r, sq_c, sq_pos, new_dir = get_square(square_row, square_col, direction, cur_row, cur_col)
