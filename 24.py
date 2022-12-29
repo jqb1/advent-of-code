@@ -34,8 +34,10 @@ def main():
     blizzards = {(r - 1, c - 1, BLIZZARD_DIR[valley_map[r][c]]) for r in range(len(valley_map))
                  for c in range(len(valley_map[0])) if valley_map[r][c] in BLIZZARD_DIR.keys()}
 
-    ans = bfs_valley(valley_map, blizzards, cur_pos, end_pos)
-    print(ans)
+    ans1, cur_pos, blizzards = bfs_valley(valley_map, blizzards, cur_pos, end_pos)
+    ans2, cur_pos, blizzards = bfs_valley(valley_map, blizzards, cur_pos, start_pos)
+    ans3, cur_pos, blizzards = bfs_valley(valley_map, blizzards, cur_pos, end_pos)
+    print(ans1 + ans2 + ans3)
 
 
 def bfs_valley(valley_map, blizzards, cur_pos, end_pos):
@@ -66,7 +68,7 @@ def bfs_valley(valley_map, blizzards, cur_pos, end_pos):
             q.append(((cur_r, cur_c), minute + 1, next_blizzards))
         for dr, dc in DIRECTION.values():
             if (cur_r + dr, cur_c + dc) == end_pos:
-                return minute + 1
+                return minute + 1, (cur_r + dr, cur_c + dc), next_blizzards
             if ((cur_r + dr, cur_c + dc) not in blizzard_positions
                     and 0 <= cur_r + dr < max_row and 0 <= cur_c + dc < max_col):
                 q.append(((cur_r + dr, cur_c + dc), minute + 1, next_blizzards))
