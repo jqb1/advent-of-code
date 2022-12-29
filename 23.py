@@ -88,25 +88,6 @@ def display_positions(elf_positions, max_row, min_row, max_col, min_col):
         print(' '.join([grove[r][c] for c in range(len(grove[0]))]))
 
 
-def extend_grove(position, grove, r_inserted, c_inserted):
-    row, col = position
-    if row >= len(grove):
-        grove.append(['.'] * len(grove[0]))
-        return 0, 0
-    elif col >= len(grove[0]):
-        for row in grove:
-            row.append('.')
-        return 0, 0
-    elif col < 0 and c_inserted == 0:
-        for row in grove:
-            row.insert(0, '.')
-        return 0, 1
-    elif row < 0 and r_inserted == 0:
-        grove.insert(0, ['.'] * len(grove[0]))
-        return 1, 0
-    return 0, 0
-
-
 def check_dir(pos, direction, elf_positions):
     if all((pos[0] + dr, pos[1] + dc) not in elf_positions for dr, dc in CHECK_DIR[direction]):
         return True

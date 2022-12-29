@@ -35,9 +35,10 @@ def main():
                  for c in range(len(valley_map[0])) if valley_map[r][c] in BLIZZARD_DIR.keys()}
 
     ans1, cur_pos, blizzards = bfs_valley(valley_map, blizzards, cur_pos, end_pos)
+    print("Part1:", ans1)
     ans2, cur_pos, blizzards = bfs_valley(valley_map, blizzards, cur_pos, start_pos)
     ans3, cur_pos, blizzards = bfs_valley(valley_map, blizzards, cur_pos, end_pos)
-    print(ans1 + ans2 + ans3)
+    print("Part2:", ans1 + ans2 + ans3)
 
 
 def bfs_valley(valley_map, blizzards, cur_pos, end_pos):
