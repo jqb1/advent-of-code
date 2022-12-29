@@ -2,7 +2,7 @@ import re
 
 
 def read_input():
-    with open("/Users/jkoziol/Downloads/input.txt") as f:
+    with open("./input.txt") as f:
         lines = [line.rstrip() for line in f]
     return lines
 

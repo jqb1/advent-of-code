@@ -1,5 +1,5 @@
 def read_input():
-    with open("/Users/jkoziol/Downloads/input.txt") as f:
+    with open("./input.txt") as f:
         lines = [eval(line.rstrip()) for line in f if not line == '\n']
     return lines
 

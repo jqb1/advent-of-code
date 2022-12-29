@@ -2,7 +2,7 @@ from collections import defaultdict
 
 
 def read_input():
-    with open("/Users/jkoziol/Downloads/input.txt") as f:
+    with open("./input.txt") as f:
         moves = [line_.rstrip() for line_ in f]
     return moves
 

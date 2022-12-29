@@ -1,4 +1,4 @@
-with open("/Users/jkoziol/Downloads/input.txt") as f:
+with open("./input.txt") as f:
     records = f.readlines()
     records = [l.rstrip() for l in records]
 

@@ -1,4 +1,4 @@
-with open("/Users/jkoziol/Downloads/input.txt") as f:
+with open("./input.txt") as f:
     rucksacks = [line.rstrip() for line in f]
 
 

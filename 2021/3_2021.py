@@ -1,5 +1,5 @@
 
-with open("/Users/jkoziol/Downloads/input.txt") as f:
+with open("./input.txt") as f:
     records = f.readlines()
     records = [line.rstrip() for line in records]
 

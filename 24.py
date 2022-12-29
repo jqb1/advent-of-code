@@ -3,7 +3,7 @@ from functools import lru_cache
 
 
 def read_input():
-    with open("/Users/jkoziol/Downloads/input.txt") as f:
+    with open("./input.txt") as f:
         lines = [list(line.rstrip()) for line in f]
     return lines
 
