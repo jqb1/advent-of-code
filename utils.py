@@ -24,7 +24,7 @@ root.insert_child(c)
 a.insert_child(e)
 
 
-def dfs(root_):
+def bfs(root_):
     print(root_)
     q = deque([root_])
     while q:
