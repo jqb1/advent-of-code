@@ -41,8 +41,6 @@ def main():
     basin_sizes = sorted(basin_sizes)
     print(basin_sizes)
     print(basin_sizes[-3] * basin_sizes[-2] * basin_sizes[-1])
-    # 309540 too low
-    # 711620 too low
 
 
 def explore_basin(heightmap, point, seen, max_row, max_col):
