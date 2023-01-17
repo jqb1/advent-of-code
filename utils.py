@@ -34,19 +34,15 @@ def bfs(root_):
             print(child.name)
 
 
-def bubble_sort(list_):
-    list_sorted = False
-    while not list_sorted:
-        results = []
-        for i in range(len(list_) - 1):
-            l1 = list_[i]
-            l2 = list_[i + 1]
-            order = l1 < l2
-            if not order:
-                list_[i] = l2
-                list_[i + 1] = l1
-                results.append(False)
-            else:
-                results.append(True)
-        if all(results):
-            list_sorted = True
+def bubble_sort(arr):
+    changed = True
+
+    while changed:
+        changed = False
+        for i in range(len(arr) - 1):
+            if arr[i] > arr[i+1]:
+                c = arr[i+1]
+                arr[i+1] = arr[i]
+                arr[i] = c
+                changed = True
+    return arr
