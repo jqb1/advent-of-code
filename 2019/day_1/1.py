@@ -9,6 +9,7 @@ def solve():
     fuel = [calc_fuel(n) for n in input_]
     return sum(fuel)
 
+
 def calc_fuel(f):
     s = 0
     while f >= 0:
