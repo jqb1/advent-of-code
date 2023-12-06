@@ -5,7 +5,7 @@ def read_input():
 
 
 def solve():
-    #p1
+    # p1
     input_ = read_input()
     # seeds = map(int, input_[0].split()[1:])
     # p2
@@ -40,7 +40,6 @@ def solve():
         if new is None:
             id_to_new[id_] = id_
     print(min(id_to_new.values()))
-
 
 
 solve()

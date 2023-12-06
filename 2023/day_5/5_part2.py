@@ -71,7 +71,10 @@ def process_range(curr_range, new, r_start, r_end):
     # middle part in range
     # cur_range[0] ... [r_start .... r_end] ... cur_range[1]
     elif curr_range[0] < r_start and curr_range[1] >= r_end:
-        return [(new, r_end - r_start + new)], [(curr_range[0], r_start), (r_end, curr_range[1])]
+        return [(new, r_end - r_start + new)], [
+            (curr_range[0], r_start),
+            (r_end, curr_range[1]),
+        ]
     else:
         return [], []
 
