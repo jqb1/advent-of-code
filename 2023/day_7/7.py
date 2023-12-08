@@ -38,7 +38,6 @@ def solve():
     result = 0
     for score in sorted(score_to_hand):
         for hand in score_to_hand[score]:
-            # print(hand)
             rank += 1
             result += (rank * hand_to_bid[hand])
     print(result)
