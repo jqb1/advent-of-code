@@ -11,7 +11,7 @@ def solve():
     max_i = len(instructions) - 1
     cur_i = 0
     steps = 0
-    while cur_i >= 0 and cur_i <= max_i:
+    while 0 <= cur_i <= max_i:
         cur = instructions[cur_i]
         next_j = instructions[cur_i]
         if next_j >= 3:
