@@ -16,14 +16,14 @@ DIRECTIONS = {
 
 input_ = read_input()
 pos_map = {(row, col): input_[row][col] for col in range(len(input_[0])) for row in range(len(input_))}
+CYCLES_N = 1000000000
 
 
 def solve():
     row_len, col_len = len(input_), len(input_[0])
-    # for _ in range(1000000000):
     seen = {}
     i = 0
-    while i < 1000000000:
+    while i < CYCLES_N:
         tilt_n(row_len, col_len)
         tilt_w(row_len, col_len)
         tilt_s(row_len, col_len)
@@ -32,7 +32,7 @@ def solve():
         if tp in seen:
             prev_i = seen[tp]
             repeat_cycle = (i - prev_i)
-            multiplier = (1000000000 - i) // repeat_cycle
+            multiplier = (CYCLES_N - i) // repeat_cycle
             print("seen", i, prev_i)
             i = i + repeat_cycle * multiplier
             seen.clear()
