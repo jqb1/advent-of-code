@@ -10,28 +10,24 @@ def read_input():
 
 def solve():
     inp = read_input()[0].split(",")
-    boxes = defaultdict(list)
-    label_to_focal = {}
+    boxes = defaultdict(dict)
     for el in inp:
         if len(sp := el.split("=")) == 2:
             label, focal_len = sp
-            label_to_focal[label] = int(focal_len)
             box_n = hash_(label)
-            if label not in boxes[box_n]:
-                boxes[box_n].append(label)
+            boxes[box_n][label] = int(focal_len)
         else:
             label = el.split("-")[0]
             box_n = hash_(label)
             if label in boxes[box_n]:
-                boxes[box_n].remove(label)
+                del boxes[box_n][label]
             if not boxes[box_n]:
                 del boxes[box_n]
     print(boxes)
-    print(label_to_focal)
     res = 0
     for box, lenses in boxes.items():
-        for i, lens in enumerate(lenses):
-            r = (box + 1) * (i + 1) * label_to_focal[lens]
+        for i, focal_l in enumerate(lenses.values()):
+            r = (box + 1) * (i + 1) * focal_l
             res += r
     print(res)
 
