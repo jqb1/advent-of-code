@@ -1,4 +1,3 @@
-import re
 from collections import defaultdict
 
 
@@ -32,8 +31,6 @@ def solve():
     print(res)
 
 
-
-
 def hash_(element):
     cur_val = 0
     for letter in element:
@@ -43,5 +40,4 @@ def hash_(element):
     return cur_val
 
 
-# print(hash_("cm"))
 solve()
