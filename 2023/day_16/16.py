@@ -28,11 +28,9 @@ SPLITTER = {
 def solve():
     map_ = read_input()
     print(map_)
-    visited = set()
     max_r, max_c = len(map_)-1, len(map_[0])-1
-    q = deque([(0, -1, "r")])
-    seen = set()
-
+    # part 1
+    # possible_start = [(0, 0, "r")]
     #part 2
     possible_start = [*[(r, -1, "r") for r in range(max_r+1)],
                       *[(-1, c, "d") for c in range(max_c+1)],
