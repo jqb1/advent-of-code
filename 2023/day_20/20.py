@@ -73,12 +73,6 @@ def solve():
     print(low_c, high_c, f"res:{low_c*high_c}")
 
 
-def check_all_inputs(cnj):
-    if all(inp == "high" for inp in cnj["inputs"].values()):
-        return True
-    return False
-
-
 def handle_ff_signal(signal, ff):
     if signal == "high":
         return
