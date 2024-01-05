@@ -42,7 +42,6 @@ def solve():
         else:
             for dr, dc in DIRECTIONS.values():
                 if 0 <= (new_r := pr + dr) <= max_row and 0 <= (new_c := pc + dc) <= max_col and map_[new_r][new_c] != "#":
-                    # if not (new_r, new_c) in path:
                     q.append(((new_r, new_c), steps + 1, path | {(pr, pc)}))
 
     print(f"longest path {longest_path}")

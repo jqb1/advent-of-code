@@ -1,5 +1,4 @@
-import sys
-from collections import deque, defaultdict
+from collections import deque
 
 
 def read_input():
@@ -85,8 +84,9 @@ def dfs_longest(node, steps, end_p, crossings, path):
     for neighbor, dist in crossings[node].items():
         if neighbor in path:
             continue
-        dst = dfs_longest(neighbor, steps+dist, end_p, crossings, path | {node})
+        dst = dfs_longest(neighbor, steps + dist, end_p, crossings, path | {node})
         max_dist = max(dst, max_dist)
     return max_dist
+
 
 solve()
