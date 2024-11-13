@@ -20,9 +20,10 @@ def calc_diffs(line):
     if not any(line):
         return 0
     for i in range(1, len(line)):
-        diffs.append(line[i] - line[i-1])
+        diffs.append(line[i] - line[i - 1])
         if diffs[-1] != 0 and all_zero:
             all_zero = False
     return line[-1] + calc_diffs(diffs)
+
 
 solve()

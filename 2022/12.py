@@ -21,20 +21,22 @@ def find_E_and_S(grid_):
 
 
 DIRECTIONS = {
-    'l': (0, -1),
-    'r': (0, 1),
-    'u': (-1, 0),
-    'd': (1, 0),
+    "l": (0, -1),
+    "r": (0, 1),
+    "u": (-1, 0),
+    "d": (1, 0),
 }
 
 
 def explore_roads(root_, grid_, e_point_):
     rc, cc = len(grid_), len(grid_[0])
     fewest_steps = rc * cc * 100000  # init max
-    path = {(root_[0], root_[1]), }
+    path = {
+        (root_[0], root_[1]),
+    }
     q = deque([root_])
 
-    grid_[e_point_[0]][e_point_[1]] = 'z'
+    grid_[e_point_[0]][e_point_[1]] = "z"
     while q:
         curr_point = q.popleft()
         curr_r, curr_c, p_len = curr_point
@@ -46,14 +48,15 @@ def explore_roads(root_, grid_, e_point_):
             point_r = curr_r + dr
             point_c = curr_c + dc
             if 0 <= point_r < rc and 0 <= point_c < cc:
-                if (ord(grid_[point_r][point_c]) <= ord(grid_[curr_r][curr_c])+1) or grid_[curr_r][curr_c] == "S":
+                if (
+                    ord(grid_[point_r][point_c]) <= ord(grid_[curr_r][curr_c]) + 1
+                ) or grid_[curr_r][curr_c] == "S":
                     if not (point_r, point_c) in path:
                         path.add((point_r, point_c))
-                        q.append((point_r, point_c, p_len+1))
+                        q.append((point_r, point_c, p_len + 1))
 
 
 def main():
-
     grid = [list(r) for r in read_input()]
     print(grid)
 
@@ -65,7 +68,7 @@ def main():
     # part 1 without this loop
     for r in range(len(grid)):
         for c in range(len(grid[0])):
-            if grid[r][c] == 'a':
+            if grid[r][c] == "a":
                 result = explore_roads(s_point, grid, e_point)
                 if result and result < shortest:
                     shortest = result

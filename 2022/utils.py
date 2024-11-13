@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Node:
     def __init__(self, name, value):
         self.name = name
@@ -40,9 +41,9 @@ def bubble_sort(arr):
     while changed:
         changed = False
         for i in range(len(arr) - 1):
-            if arr[i] > arr[i+1]:
-                c = arr[i+1]
-                arr[i+1] = arr[i]
+            if arr[i] > arr[i + 1]:
+                c = arr[i + 1]
+                arr[i + 1] = arr[i]
                 arr[i] = c
                 changed = True
     return arr

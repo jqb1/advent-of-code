@@ -21,7 +21,7 @@ def solve():
     for i in range(len(tower)):
         new_height_map = defaultdict(int)
         safe = True
-        for brick in tower[:i] + tower[i + 1:]:
+        for brick in tower[:i] + tower[i + 1 :]:
             *_, changed = set_brick(brick, new_height_map)
             # part 1
             # if changed:
@@ -44,7 +44,10 @@ def set_brick(brick, height_map):
 
 def move_down(brick, height_map):
     (x1, y1, h1), (x2, y2, h2) = brick
-    cur_h = max(height_map[(x, y)] for y in range(y1, y2 + 1) for x in range(x1, x2 + 1)) + 1
+    cur_h = (
+        max(height_map[(x, y)] for y in range(y1, y2 + 1) for x in range(x1, x2 + 1))
+        + 1
+    )
     changed = cur_h != h1
     return cur_h, cur_h + h2 - h1, changed
 

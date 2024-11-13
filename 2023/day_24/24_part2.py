@@ -15,11 +15,11 @@ def solve():
     for stone, dt in zip(hail_stones, [t1, t2, t3]):
         x0, y0, z0, vx, vy, vz = stone
         # x axis
-        equations.append(sympy.Eq(x + dx * dt, x0 + vx*dt))
+        equations.append(sympy.Eq(x + dx * dt, x0 + vx * dt))
         # y axis
-        equations.append(sympy.Eq(y + dy * dt, y0 + vy*dt))
+        equations.append(sympy.Eq(y + dy * dt, y0 + vy * dt))
         # z axis
-        equations.append(sympy.Eq(z + dz * dt, z0 + vz*dt))
+        equations.append(sympy.Eq(z + dz * dt, z0 + vz * dt))
     # t == 0, find x,y,z
     res = sympy.solve(equations, (x, y, z, dx, dy, dz, t1, t2, t3))[0]
     print(sum(res[:3]))

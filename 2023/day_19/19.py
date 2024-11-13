@@ -116,7 +116,9 @@ def explore_possible_paths(workflows):
         for rule in workflows[cur][:-1]:
             condition, result = rule.split(":")
             condition = split_condition(condition)
-            q.append((f"{path} {result}", conditions + negated_conditions + [condition]))
+            q.append(
+                (f"{path} {result}", conditions + negated_conditions + [condition])
+            )
             negated_conditions.append(negate_condition(*condition))
 
         # path when none of conditions matched

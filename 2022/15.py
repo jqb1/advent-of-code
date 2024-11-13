@@ -13,11 +13,14 @@ beacons = set()
 ROW = 2000000
 MAX_XY = 20
 
+
 def main():
     lines = read_input()
     for line in read_input():
-        x1, y1, x2, y2 = re.match(r"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)",
-                                  line).groups()
+        x1, y1, x2, y2 = re.match(
+            r"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)",
+            line,
+        ).groups()
         x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
         beacons.add((x2, y2))
         distance = abs(x2 - x1) + abs(y2 - y1)
@@ -31,7 +34,7 @@ def main():
         # if y1 + cur_dy > ROW or y1 - cur_dy < ROW:
         #     break
         print(r)
-        for dx in range(r+1):
+        for dx in range(r + 1):
             if y1 + dist_y == ROW:
                 no_beacon.add((x1 + dx, y1 + dist_y))
                 no_beacon.add((x1 - dx, y1 + dist_y))

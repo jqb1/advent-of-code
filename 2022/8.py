@@ -139,16 +139,16 @@ def get_viewed_trees(source_tree, tree_range):
 
 trees_cols = list(zip(*trees))
 # part2
-for i in range(len(trees)-1):
-    for j in range(row_len-1):
+for i in range(len(trees) - 1):
+    for j in range(row_len - 1):
         # left
         l = [tree for tree in trees[i][:j]][::-1]
         s1 = get_viewed_trees(int(trees[i][j]), l)
-        r = [tree for tree in trees[i][j + 1:]]
+        r = [tree for tree in trees[i][j + 1 :]]
         s2 = get_viewed_trees(int(trees[i][j]), r)
         up = [tree for tree in trees_cols[j][:i]][::-1]
         s3 = get_viewed_trees(int(trees[i][j]), up)
-        down = [tree for tree in trees_cols[j][i + 1:]]
+        down = [tree for tree in trees_cols[j][i + 1 :]]
         s4 = get_viewed_trees(int(trees[i][j]), down)
 
         mult = s1 * s2 * s3 * s4

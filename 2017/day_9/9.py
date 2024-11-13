@@ -1,4 +1,3 @@
-
 def read_input():
     with open("./input.txt") as f:
         lines = [line.rstrip() for line in f]
@@ -33,7 +32,6 @@ def solve():
             garbage_on = True
 
     print(garbage_c)
-
 
 
 solve()

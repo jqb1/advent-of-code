@@ -1,4 +1,3 @@
-
 with open("./input.txt") as f:
     records = f.readlines()
     records = [line.rstrip() for line in records]
@@ -19,7 +18,12 @@ with open("./input.txt") as f:
 
 filtered_records = records
 for idx in range(len(records[0])):
-    common_bit = "1" if list(zip(*filtered_records))[idx].count("1") >= list(zip(*filtered_records))[idx].count("0") else "0"
+    common_bit = (
+        "1"
+        if list(zip(*filtered_records))[idx].count("1")
+        >= list(zip(*filtered_records))[idx].count("0")
+        else "0"
+    )
     filtered_records = filter(lambda bin_s: bin_s[idx] == common_bit, filtered_records)
     if len(filtered_records) == 1:
         break
@@ -27,7 +31,12 @@ print(filtered_records)
 oxygen = int(filtered_records[0], 2)
 filtered_records = records
 for idx in range(len(records[0])):
-    common_bit = "0" if list(zip(*filtered_records))[idx].count("0") <= list(zip(*filtered_records))[idx].count("1") else "1"
+    common_bit = (
+        "0"
+        if list(zip(*filtered_records))[idx].count("0")
+        <= list(zip(*filtered_records))[idx].count("1")
+        else "1"
+    )
     filtered_records = filter(lambda bin_s: bin_s[idx] == common_bit, filtered_records)
     if len(filtered_records) == 1:
         break

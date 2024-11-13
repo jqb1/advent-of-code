@@ -6,14 +6,23 @@ def read_input():
 
 def solve():
     input_ = read_input()
-    adjacent_list = [(1, -1), (1, 0), (1, 1), (0, -1), (0, 1), (-1, -1), (-1, 0), (-1, 1)]
+    adjacent_list = [
+        (1, -1),
+        (1, 0),
+        (1, 1),
+        (0, -1),
+        (0, 1),
+        (-1, -1),
+        (-1, 0),
+        (-1, 1),
+    ]
 
     points = {}
     symbols = set()
     for i in range(len(input_)):
         for j in range(len(input_[0])):
             points[(i, j)] = input_[i][j]
-            if not input_[i][j].isdigit() and input_[i][j] !=".":
+            if not input_[i][j].isdigit() and input_[i][j] != ".":
                 symbols.add(input_[i][j])
     valid_points = []
     part_numbers_cords = {}
@@ -28,7 +37,10 @@ def solve():
                 num += el
                 cords.append((i, j))
                 if not is_valid:
-                    is_valid = any(points.get((i + di, j + dj), 0) in symbols for di, dj in adjacent_list)
+                    is_valid = any(
+                        points.get((i + di, j + dj), 0) in symbols
+                        for di, dj in adjacent_list
+                    )
 
             elif not el.isnumeric() and is_valid and num != "":
                 num_id += 1
@@ -57,7 +69,7 @@ def solve():
             if el == "*":
                 cur_parts = set()
                 for adj in adjacent_list:
-                    part = part_numbers_cords.get((i+adj[0], j+adj[1]), None)
+                    part = part_numbers_cords.get((i + adj[0], j + adj[1]), None)
                     if part:
                         cur_parts.add(part)
                 if len(cur_parts) == 2:
@@ -66,5 +78,6 @@ def solve():
                         ratio *= p[0]
                     res += ratio
     print(res)
+
 
 solve()

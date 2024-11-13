@@ -47,11 +47,19 @@ def find_permutations(current_i, group_i, damaged_cnt):
     cur_springs = [".", "#"] if row[current_i] == "?" else [row[current_i]]
     res = 0
     for spring in cur_springs:
-        if spring == "." and group_i < len(criteria) and criteria[group_i] == damaged_cnt:
+        if (
+            spring == "."
+            and group_i < len(criteria)
+            and criteria[group_i] == damaged_cnt
+        ):
             res += find_permutations(current_i + 1, group_i + 1, 0)
         elif spring == "." and damaged_cnt == 0:
             res += find_permutations(current_i + 1, group_i, 0)
-        elif spring == "#" and group_i < len(criteria) and damaged_cnt < criteria[group_i]:
+        elif (
+            spring == "#"
+            and group_i < len(criteria)
+            and damaged_cnt < criteria[group_i]
+        ):
             res += find_permutations(current_i + 1, group_i, damaged_cnt + 1)
     return res
 

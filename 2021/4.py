@@ -9,9 +9,9 @@ def read_input():
 
 
 def check_winner(brd):
-    if any(all(n == 'x' for n in row) for row in brd):
+    if any(all(n == "x" for n in row) for row in brd):
         return True
-    if any(all(n == 'x' for n in col) for col in zip(*brd)):
+    if any(all(n == "x" for n in col) for col in zip(*brd)):
         return True
 
 
@@ -34,10 +34,10 @@ for num in map(int, numbers.split(",")):
     for board in all_boards:
         sum = 0
         for i, j in product(range(len(board[0])), range(len(board))):
-            if board[i][j] != 'x':
+            if board[i][j] != "x":
                 sum += board[i][j]
             if board[i][j] == num:
-                board[i][j] = 'x'
+                board[i][j] = "x"
 
         if check_winner(board):
             sum -= num

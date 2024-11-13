@@ -16,4 +16,5 @@ def solve():
                     s += div
     print(s)
 
+
 solve()

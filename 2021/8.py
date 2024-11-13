@@ -15,8 +15,8 @@ def main():
     c = 0
     s = 0
     for line in read_input():
-        sig_pattern = line.split('|')[0].rstrip().split()
-        result = line.split('|')[1].strip().split()
+        sig_pattern = line.split("|")[0].rstrip().split()
+        result = line.split("|")[1].strip().split()
         digit_to_signal = {}
         for sig in sig_pattern:
             if len(sig) in lengths:
@@ -39,7 +39,7 @@ def main():
                     digit_to_signal[5] = sig
                 else:
                     digit_to_signal[2] = sig
-        decoded = ''
+        decoded = ""
         for signal in result:
             if d := len_to_digit.get(len(signal)):
                 decoded += str(d)

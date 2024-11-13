@@ -15,7 +15,7 @@ def solve():
     card_count = defaultdict(int)
 
     p2_sum = 0
-    for c in range(1, max_card_id+1):
+    for c in range(1, max_card_id + 1):
         card_count[c] = 1
     for card in input_:
         cw = card[0].split()
@@ -33,10 +33,11 @@ def solve():
         # sum_ += points
         card_copies = len(matched)
         multiplier = card_count[int(card_id)]
-        for c_id in range(int(card_id)+1, int(card_id) + card_copies + 1):
+        for c_id in range(int(card_id) + 1, int(card_id) + card_copies + 1):
             if c_id > max_card_id:
                 break
             card_count[int(c_id)] += 1 * multiplier
     print(sum(card_count.values()))
+
 
 solve()

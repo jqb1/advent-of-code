@@ -1,6 +1,7 @@
 import re
 import sympy
 
+
 def read_input():
     with open("./input.txt") as f:
         lines = [tuple(map(int, re.findall("-?\d+", line))) for line in f]
@@ -24,7 +25,9 @@ def solve():
                 continue
             x, y = get_cross_point(*coeffs1, *coeffs2)
             if BOUNDS[0] <= x <= BOUNDS[1] and BOUNDS[0] <= y <= BOUNDS[1]:
-                if crossed_in_past(stone1[0], stone1[3], x) or crossed_in_past(stone2[0], stone2[3], x):
+                if crossed_in_past(stone1[0], stone1[3], x) or crossed_in_past(
+                    stone2[0], stone2[3], x
+                ):
                     continue
                 c += 1
     return c
@@ -40,9 +43,9 @@ def crossed_in_past(x0, vx, cross_x):
 def get_coefficients(stone):
     px, py, pz, vx, vy, vz = stone
     # can be determined by y1-y0/ x1-x0
-    a = vy/vx
+    a = vy / vx
     # y = ax + b => b = y - ax
-    b = py - a*px
+    b = py - a * px
     return a, b
 
 
@@ -57,4 +60,3 @@ def get_cross_point(a1, b1, a2, b2):
 
 p1 = solve()
 print(p1)
-

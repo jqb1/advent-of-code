@@ -30,4 +30,3 @@ for line in records:
     score += result(opponent, me)
 
 print(score)
-

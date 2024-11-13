@@ -7,12 +7,7 @@ def read_input():
 head_moves = read_input()
 print(head_moves)
 
-pos_change = {
-    "L": (0, -1),
-    "R": (0, 1),
-    "U": (-1, 0),
-    "D": (1, 0)
-}
+pos_change = {"L": (0, -1), "R": (0, 1), "U": (-1, 0), "D": (1, 0)}
 
 
 def check_tail(tail_pos, head_pos):
@@ -72,7 +67,7 @@ for move in head_moves:
 
         for i in range(1, len(rope_pos)):
             if check_tail(rope_pos[i], rope_pos[i - 1]):
-                dr, dc = move_tail(rope_pos[i], rope_pos[i-1])
+                dr, dc = move_tail(rope_pos[i], rope_pos[i - 1])
                 rope_pos[i][0] += dr
                 rope_pos[i][1] += dc
                 if i == 9:

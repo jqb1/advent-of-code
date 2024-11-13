@@ -9,24 +9,29 @@ def read_input():
 
 
 DIRECTION = {
-    's': (1, 0),
-    'n': (-1, 0),
-    'w': (0, -1),
-    'e': (0, 1),
+    "s": (1, 0),
+    "n": (-1, 0),
+    "w": (0, -1),
+    "e": (0, 1),
 }
 
 CHECK_DIR = {
-    'n': ((-1, 0), (-1, -1), (-1, 1)),
-    's': ((1, 0), (1, -1), (1, 1)),
-    'w': ((0, -1), (-1, -1), (1, -1)),
-    'e': ((0, 1), (-1, 1), (1, 1)),
+    "n": ((-1, 0), (-1, -1), (-1, 1)),
+    "s": ((1, 0), (1, -1), (1, 1)),
+    "w": ((0, -1), (-1, -1), (1, -1)),
+    "e": ((0, 1), (-1, 1), (1, 1)),
 }
 
 
 def main(part):
     grove = [list(row) for row in read_input()]
-    directions_q = deque(['n', 's', 'w', 'e'])
-    elf_positions = {(row, col) for row in range(len(grove)) for col in range(len(grove[0])) if grove[row][col] == "#"}
+    directions_q = deque(["n", "s", "w", "e"])
+    elf_positions = {
+        (row, col)
+        for row in range(len(grove))
+        for col in range(len(grove[0]))
+        if grove[row][col] == "#"
+    }
 
     for round_ in range(10 if part == 1 else 10000):
         dont_move = set()
@@ -71,8 +76,14 @@ def main(part):
         elf_positions = new_elf_pos
 
     print(elf_positions)
-    min_row_, min_col_ = min(elf_positions, key=lambda x: x[0])[0], min(elf_positions, key=lambda x: x[1])[1]
-    max_row_, max_col_ = max(elf_positions, key=lambda x: x[0])[0], max(elf_positions, key=lambda x: x[1])[1]
+    min_row_, min_col_ = (
+        min(elf_positions, key=lambda x: x[0])[0],
+        min(elf_positions, key=lambda x: x[1])[1],
+    )
+    max_row_, max_col_ = (
+        max(elf_positions, key=lambda x: x[0])[0],
+        max(elf_positions, key=lambda x: x[1])[1],
+    )
     display_positions(elf_positions, max_row_, min_row_, max_col_, min_col_)
     print(min_row_, min_col_, max_row_, max_col_)
     print(((max_col_ - min_col_ + 1) * (max_row_ - min_row_ + 1)) - len(elf_positions))
@@ -80,16 +91,19 @@ def main(part):
 
 def display_positions(elf_positions, max_row, min_row, max_col, min_col):
     row_num, col_num = abs(max_row - min_row), abs(max_col - min_col)
-    grove = [['.'] * (col_num + 1) for _ in range(row_num + 1)]
+    grove = [["."] * (col_num + 1) for _ in range(row_num + 1)]
     for pos in elf_positions:
         grove[pos[0] + abs(min_row)][pos[1] + abs(min_col)] = "#"
 
     for r in range(len(grove)):
-        print(' '.join([grove[r][c] for c in range(len(grove[0]))]))
+        print(" ".join([grove[r][c] for c in range(len(grove[0]))]))
 
 
 def check_dir(pos, direction, elf_positions):
-    if all((pos[0] + dr, pos[1] + dc) not in elf_positions for dr, dc in CHECK_DIR[direction]):
+    if all(
+        (pos[0] + dr, pos[1] + dc) not in elf_positions
+        for dr, dc in CHECK_DIR[direction]
+    ):
         return True
     return False
 

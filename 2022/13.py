@@ -1,6 +1,6 @@
 def read_input():
     with open("./input.txt") as f:
-        lines = [eval(line.rstrip()) for line in f if not line == '\n']
+        lines = [eval(line.rstrip()) for line in f if not line == "\n"]
     return lines
 
 
@@ -13,15 +13,15 @@ def compare_list_items(ll, lr):
             return False
         if isinstance(ll[i], list) and isinstance(lr[i], list):
             result = compare_list_items(ll[i], lr[i])
-            if result != 'Draw':
+            if result != "Draw":
                 return result
         elif isinstance(ll[i], int) and isinstance(lr[i], list):
             result = compare_list_items([ll[i]], lr[i])
-            if result != 'Draw':
+            if result != "Draw":
                 return result
         elif isinstance(ll[i], list) and isinstance(lr[i], int):
             result = compare_list_items(ll[i], [lr[i]])
-            if result != 'Draw':
+            if result != "Draw":
                 return result
         elif isinstance(ll[i], int) and isinstance(lr[i], int):
             if ll[i] > lr[i]:
@@ -29,7 +29,7 @@ def compare_list_items(ll, lr):
                 return False
             if ll[i] < lr[i]:
                 return True
-    return True if len(ll) < len(lr) else 'Draw'
+    return True if len(ll) < len(lr) else "Draw"
 
 
 indices = set()
@@ -62,4 +62,3 @@ while not packets_sorted:
 print(packets_sorted)
 print(packets)
 print((packets.index([[2]]) + 1) * (packets.index([[6]]) + 1))
-

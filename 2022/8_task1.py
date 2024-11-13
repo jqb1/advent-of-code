@@ -106,10 +106,14 @@ c = 0
 for i in range(len(trees)):
     for j in range(len(trees[0])):
         tree = trees[i][j]
-        x = any([all(trees[i][x] < tree for x in range(j + 1, len(trees[0]))),
-                 all(trees[i][x] < tree for x in range(0, j)),
-                 all(trees[x][j] < tree for x in range(0, i)),
-                 all(trees[x][j] < tree for x in range(i + 1, len(trees)))])
+        x = any(
+            [
+                all(trees[i][x] < tree for x in range(j + 1, len(trees[0]))),
+                all(trees[i][x] < tree for x in range(0, j)),
+                all(trees[x][j] < tree for x in range(0, i)),
+                all(trees[x][j] < tree for x in range(i + 1, len(trees))),
+            ]
+        )
         if x:
             c += 1
 

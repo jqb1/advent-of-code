@@ -18,7 +18,7 @@ def all_cubes_cords(cube_array):
 
 
 def main():
-    cubes = {tuple(map(int, line.split(','))) for line in read_input()}
+    cubes = {tuple(map(int, line.split(","))) for line in read_input()}
 
     min_z, max_z = min(cubes, key=lambda x: x[2])[2], max(cubes, key=lambda x: x[2])[2]
     min_y, max_y = min(cubes, key=lambda x: x[1])[1], max(cubes, key=lambda x: x[1])[1]
@@ -47,11 +47,12 @@ def main():
     print(c_2)
 
     # display the shape for fun
-    ax = plt.axes(projection='3d')
+    ax = plt.axes(projection="3d")
     ax.set_facecolor("#6666ff")
-    ax.voxels(filled_droplet, facecolor="#E02050", edgecolor='white')
+    ax.voxels(filled_droplet, facecolor="#E02050", edgecolor="white")
     ax.axis("off")
     plt.show()
+
 
 def count_external_sides(cube, all_cords):
     x, y, z = cube
@@ -69,8 +70,5 @@ def count_external_sides(cube, all_cords):
     return cntr
 
 
-
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

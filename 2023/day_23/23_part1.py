@@ -8,10 +8,10 @@ def read_input():
 
 
 DIRECTIONS = {
-    '<': (0, -1),
-    '>': (0, 1),
-    '^': (-1, 0),
-    'v': (1, 0),
+    "<": (0, -1),
+    ">": (0, 1),
+    "^": (-1, 0),
+    "v": (1, 0),
 }
 
 
@@ -38,10 +38,14 @@ def solve():
         tile = map_[pr][pc]
         if tile in DIRECTIONS:
             dr, dc = DIRECTIONS[tile]
-            q.append(((pr+dr, pc+dc), steps + 1, path | {(pr, pc)}))
+            q.append(((pr + dr, pc + dc), steps + 1, path | {(pr, pc)}))
         else:
             for dr, dc in DIRECTIONS.values():
-                if 0 <= (new_r := pr + dr) <= max_row and 0 <= (new_c := pc + dc) <= max_col and map_[new_r][new_c] != "#":
+                if (
+                    0 <= (new_r := pr + dr) <= max_row
+                    and 0 <= (new_c := pc + dc) <= max_col
+                    and map_[new_r][new_c] != "#"
+                ):
                     q.append(((new_r, new_c), steps + 1, path | {(pr, pc)}))
 
     print(f"longest path {longest_path}")

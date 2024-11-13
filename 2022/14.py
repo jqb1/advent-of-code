@@ -45,13 +45,13 @@ def draw_sand(cave, max_row):
     while not stop:
         if row > max_row:
             return True
-        if cave[row + 1][col] == '.':
+        if cave[row + 1][col] == ".":
             row += 1
-        elif cave[row + 1][col] == '#' or cave[row + 1][col] == "o":
-            if cave[row + 1][col - 1] == '.':
+        elif cave[row + 1][col] == "#" or cave[row + 1][col] == "o":
+            if cave[row + 1][col - 1] == ".":
                 col -= 1
                 continue
-            elif cave[row + 1][col + 1] == '.':
+            elif cave[row + 1][col + 1] == ".":
                 col += 1
                 continue
             else:
@@ -64,16 +64,19 @@ def draw_sand(cave, max_row):
 
 #     return False
 
-def main():
-    lines = [tuple(map(int, line.replace(" -> ", ",").split(','))) for line in read_input()]
 
-    cave = [['.'] * 1000 for _ in range(1000)]
+def main():
+    lines = [
+        tuple(map(int, line.replace(" -> ", ",").split(","))) for line in read_input()
+    ]
+
+    cave = [["."] * 1000 for _ in range(1000)]
     cave[0][500] = "+"
 
     max_row = add_rocks(lines, cave)
 
     for c_ in range(1000):
-        cave[max_row+2][c_] = "#"
+        cave[max_row + 2][c_] = "#"
 
     fin = False
     count = 0
@@ -82,6 +85,7 @@ def main():
         count += 1
 
     print(count)
+
 
 if __name__ == "__main__":
     main()

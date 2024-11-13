@@ -20,8 +20,8 @@ shapes = (
 )
 
 MOVES = {
-    '>': 1,
-    '<': -1,
+    ">": 1,
+    "<": -1,
 }
 
 JET_PATTERN = list(read_input()[0])
@@ -29,7 +29,7 @@ JET_PATTERN_LEN = len(list(read_input()[0]))
 
 
 def main():
-    chamber = [['-'] * 7]
+    chamber = [["-"] * 7]
     move_idx = -1
     seen = defaultdict(tuple)
     cycle_hight = 0
@@ -41,17 +41,19 @@ def main():
             if c == 1000000000000:
                 c = 1000000000000
                 break
-            chamber, move_idx, c, cycle_ = draw_next(chamber, shape, move_idx, c, seen, 2022)
+            chamber, move_idx, c, cycle_ = draw_next(
+                chamber, shape, move_idx, c, seen, 2022
+            )
             if cycle_:
                 cycle_hight = cycle_
             print(c)
             c += 1
     for r in range(len(chamber)):
-        s = ''
+        s = ""
         for col in range(len(chamber[0])):
-            s += ' ' + chamber[r][col]
+            s += " " + chamber[r][col]
         print(s)
-    print('')
+    print("")
     print(len(chamber) - 1 + cycle_hight)
     print(c)
 
@@ -67,7 +69,7 @@ def draw_next(chamber, shape, move_idx, shape_num, seen, required):
 
     points, height = shape
     points = set(points)
-    init_line = ['.'] * 7
+    init_line = ["."] * 7
 
     chmbr = [init_line[:] for _ in range(3 + height)] + chamber
     dh = 0
@@ -78,7 +80,7 @@ def draw_next(chamber, shape, move_idx, shape_num, seen, required):
         height = (len(chamber)) - prev_index
         shapes_between = shape_num - prev_shape_num
 
-        cycles_remaining = (1000000000000 - (shape_num - 1))//shapes_between
+        cycles_remaining = (1000000000000 - (shape_num - 1)) // shapes_between
         dh = height * cycles_remaining
         dshape = shapes_between * cycles_remaining
 
@@ -94,27 +96,30 @@ def draw_next(chamber, shape, move_idx, shape_num, seen, required):
         mv = JET_PATTERN[move_idx]
         print(mv)
         ch = MOVES[mv]
-        if all((0 <= (c + ch) < 7) and chmbr[row][c+ch] != "#" for row, c in points):
+        if all((0 <= (c + ch) < 7) and chmbr[row][c + ch] != "#" for row, c in points):
             points = {(pr, pc + ch) for pr, pc in points}
 
-        if not any((chmbr[row+1][col] == '#' or chmbr[row+1][col] == '-') for row, col in points):
-            points = {(pr+1, pc) for pr, pc in points}
+        if not any(
+            (chmbr[row + 1][col] == "#" or chmbr[row + 1][col] == "-")
+            for row, col in points
+        ):
+            points = {(pr + 1, pc) for pr, pc in points}
             print("\/")
 
         else:
             shape_moves = False
             for row, col in points:
-                chmbr[row][col] = '#'
+                chmbr[row][col] = "#"
 
         # for r in range(len(chmbr)):
         #     s = ''
         #     for c in range(len(chmbr[0])):
         #         s += "#" if (r, c) in points else chmbr[r][c]
         #     print(s)
-        print('')
+        print("")
     highest = 0
     for row in range(len(chmbr)):
-        if '#' in chmbr[row]:
+        if "#" in chmbr[row]:
             highest = row
             break
     chmbr = chmbr[highest:]

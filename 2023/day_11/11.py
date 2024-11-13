@@ -22,16 +22,17 @@ def solve():
     print(s)
 
 
-DIRECTIONS = {
-    (0, 1), (0, -1), (1, 0), (-1, 0)
-}
+DIRECTIONS = {(0, 1), (0, -1), (1, 0), (-1, 0)}
 
 
 def distance(gal1, gal2, img):
     return abs(gal1[0] - gal2[0]) + abs(gal1[1] - gal2[1])
 
+
 def expand(img):
-    initial_galaxy_cords = [(i, j) for i in range(len(img)) for j in range(len(img[0])) if img[i][j] == "#"]
+    initial_galaxy_cords = [
+        (i, j) for i in range(len(img)) for j in range(len(img[0])) if img[i][j] == "#"
+    ]
     current_galaxy_cords = initial_galaxy_cords[:]
 
     for i, col in enumerate(zip(*img)):
@@ -49,5 +50,6 @@ def expand(img):
                     cur_i, cur_j = current_galaxy_cords[gi]
                     current_galaxy_cords[gi] = (cur_i + 999999, cur_j)
     return current_galaxy_cords
+
 
 solve()

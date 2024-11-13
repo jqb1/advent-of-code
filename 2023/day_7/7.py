@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 def read_input():
     with open("./input.txt") as f:
         lines = [line.rstrip() for line in f]
@@ -8,7 +9,12 @@ def read_input():
 
 # card_to_strength = {c: s for s, c in enumerate(["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"][::-1], 1)}
 # part 2
-card_to_strength = {c: s for s, c in enumerate(["A", "K", "Q", "T", "9", "8", "7", "6", "5", "4", "3", "2", "J"][::-1], 1)}
+card_to_strength = {
+    c: s
+    for s, c in enumerate(
+        ["A", "K", "Q", "T", "9", "8", "7", "6", "5", "4", "3", "2", "J"][::-1], 1
+    )
+}
 
 
 def solve():
@@ -39,7 +45,7 @@ def solve():
     for score in sorted(score_to_hand):
         for hand in score_to_hand[score]:
             rank += 1
-            result += (rank * hand_to_bid[hand])
+            result += rank * hand_to_bid[hand]
     print(result)
 
 

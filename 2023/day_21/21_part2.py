@@ -53,13 +53,27 @@ if __name__ == "__main__":
     n = steps_limit // height
     # n = 3
     # even
-    result += map_to_points[(0, -1)] * n ** 2
+    result += map_to_points[(0, -1)] * n**2
     # odd
     result += map_to_points[(0, 0)] * (n - 1) ** 2
     # corners
-    result += map_to_points[(0, -2)] + map_to_points[(2, 0)] + map_to_points[(0, 2)] + map_to_points[(-2, 0)]
-    sides = map_to_points[(2, -1)] * (n * 2) + map_to_points[(-1, -2)] * n + map_to_points[(2, 1)] * n
+    result += (
+        map_to_points[(0, -2)]
+        + map_to_points[(2, 0)]
+        + map_to_points[(0, 2)]
+        + map_to_points[(-2, 0)]
+    )
+    sides = (
+        map_to_points[(2, -1)] * (n * 2)
+        + map_to_points[(-1, -2)] * n
+        + map_to_points[(2, 1)] * n
+    )
     # 2nd side layer
-    n_1 = (map_to_points[(1, -1)] + map_to_points[(-1, -1)] + map_to_points[(1, 1)] + map_to_points[(-1, 1)]) * (n - 1)
+    n_1 = (
+        map_to_points[(1, -1)]
+        + map_to_points[(-1, -1)]
+        + map_to_points[(1, 1)]
+        + map_to_points[(-1, 1)]
+    ) * (n - 1)
     result += n_1 + sides
     print(result)

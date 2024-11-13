@@ -7,7 +7,7 @@ def read_input():
 def solve():
     input_ = read_input()
     instructions = [int(x) for x in input_]
-    
+
     max_i = len(instructions) - 1
     cur_i = 0
     steps = 0
@@ -21,5 +21,6 @@ def solve():
         cur_i = cur_i + next_j
         steps += 1
     print(steps)
+
 
 solve()

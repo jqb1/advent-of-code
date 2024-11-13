@@ -7,7 +7,7 @@ def read_input():
 numbers = list(map(int, read_input()))
 print(numbers)
 
-numbers = [(i, num*811589153) for i, num in enumerate(numbers)]
+numbers = [(i, num * 811589153) for i, num in enumerate(numbers)]
 numbers_cpy = numbers[:]
 
 print(numbers)
@@ -25,6 +25,12 @@ print(new_numbers)
 print(new_numbers[(new_numbers.index(0) + 1000) % len(numbers)])
 print(new_numbers[(new_numbers.index(0) + 2000) % len(numbers)])
 print(new_numbers[(new_numbers.index(0) + 3000) % len(numbers)])
-print(sum((new_numbers[(new_numbers.index(0) + 1000) % len(numbers)],
-           new_numbers[(new_numbers.index(0) + 2000) % len(numbers)],
-           new_numbers[(new_numbers.index(0) + 3000) % len(numbers)])))
+print(
+    sum(
+        (
+            new_numbers[(new_numbers.index(0) + 1000) % len(numbers)],
+            new_numbers[(new_numbers.index(0) + 2000) % len(numbers)],
+            new_numbers[(new_numbers.index(0) + 3000) % len(numbers)],
+        )
+    )
+)

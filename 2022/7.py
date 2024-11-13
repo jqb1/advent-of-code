@@ -37,13 +37,17 @@ sizes = []
 root = Dir("/", None)
 current_dir = root
 for terminal in read_input():
-    if terminal == '$ cd /':
+    if terminal == "$ cd /":
         current_dir = root
         continue
     if terminal.startswith("$"):
         if terminal.split()[1] == "cd":
             dir_name = terminal.split()[2]
-            current_dir = current_dir.parent if dir_name == ".." else current_dir.get_child(dir_name)
+            current_dir = (
+                current_dir.parent
+                if dir_name == ".."
+                else current_dir.get_child(dir_name)
+            )
     else:
         info, name_ = terminal.split()
         if info == "dir":

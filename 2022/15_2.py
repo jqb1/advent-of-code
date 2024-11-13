@@ -14,6 +14,7 @@ possible_points = set()
 
 # for point check if dist between is bigger than
 
+
 def main():
     sensors = set()
     distances = set()
@@ -21,8 +22,10 @@ def main():
 
     for line in read_input():
         print(line)
-        x1, y1, x2, y2 = re.match(r"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)",
-                                  line).groups()
+        x1, y1, x2, y2 = re.match(
+            r"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)",
+            line,
+        ).groups()
         x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
         distance = abs(x2 - x1) + abs(y2 - y1)
         sensors.add((x1, y1, distance))
@@ -40,7 +43,11 @@ def main():
         if x < 0 or y < 0 or y > MAX_XY or x > MAX_XY:
             continue
         if check_if_distance_longer(x, y, sensors):
-            print('point:', x, y, )
+            print(
+                "point:",
+                x,
+                y,
+            )
             print(x * 4000000 + y)
             return
         else:

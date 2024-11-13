@@ -31,8 +31,10 @@ def solve():
                 n_now += nw_str[0]
                 break
         print(line, n_now[0] + n_now[-1])
-        s += int(n_now[0]+n_now[-1])
+        s += int(n_now[0] + n_now[-1])
     return s
+
+
 def replace_numbers(s):
     digits = {
         "one": 1,
@@ -48,5 +50,6 @@ def replace_numbers(s):
     for name, digit in digits.items():
         s = s.replace(name, str(digit))
     return s
+
 
 solution = solve()

@@ -17,7 +17,7 @@ with open("./input.txt") as f:
 # '''.splitlines()[1:]
 
 stack_num = int(moves[8][-1])
-stacks = {i+1: [] for i in range(stack_num)}
+stacks = {i + 1: [] for i in range(stack_num)}
 
 for line in moves:
     if line.startswith(" 1"):
@@ -26,7 +26,7 @@ for line in moves:
         if len(line) < line_position:
             continue
         crate = line[line_position + 1]
-        if crate != ' ':
+        if crate != " ":
             stacks[stack_key].append(crate)
 for stack in stacks:
     stacks[stack] = stacks[stack][::-1]

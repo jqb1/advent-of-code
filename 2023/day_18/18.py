@@ -5,10 +5,10 @@ def read_input():
 
 
 DIRECTIONS = {
-    'L': (0, -1),
-    'R': (0, 1),
-    'U': (-1, 0),
-    'D': (1, 0),
+    "L": (0, -1),
+    "R": (0, 1),
+    "U": (-1, 0),
+    "D": (1, 0),
 }
 
 CODE_TO_DIR = {
@@ -36,23 +36,23 @@ def solve():
         bounds_sum += steps
 
         dx, dy = DIRECTIONS[dir_]
-        x += dx*steps
-        y += dy*steps
+        x += dx * steps
+        y += dy * steps
         points.append((x, y))
 
     area_inside = shoelace(points)
     # Pick's theorem, find i + b
     # i -> interior points, b -> boundary points
     # A = i + b/2 -1 => i = A - b/2 + 1 => i + b = A + b/2 + 1
-    print(area_inside+bounds_sum//2 + 1)
+    print(area_inside + bounds_sum // 2 + 1)
 
 
 def shoelace(points):
     s = 0
     # shoelace formula
     for i in range(len(points) - 1):
-        (x1, y1), (x2, y2) = points[i], points[i+1]
-        s += (x1*y2 - x2*y1)
+        (x1, y1), (x2, y2) = points[i], points[i + 1]
+        s += x1 * y2 - x2 * y1
     return abs(s) // 2
 
 

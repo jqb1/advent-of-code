@@ -10,14 +10,14 @@ def main():
     for num in snafu_numbers:
         num_dec = 0
         for i, digit in enumerate(num[::-1]):
-            if digit in ('-', '='):
-                num_dec += 5**i * (-2 if digit == '=' else -1)
+            if digit in ("-", "="):
+                num_dec += 5**i * (-2 if digit == "=" else -1)
             else:
-                num_dec += 5**i*int(digit)
+                num_dec += 5**i * int(digit)
         num_sum += num_dec
     print(num_sum)
 
-    s = ''
+    s = ""
     d = num_sum
     tr = 0
     while d != 0:
@@ -26,7 +26,7 @@ def main():
         if tr:
             s = s[:-1]
         if m in (3, 4):
-            s += '=1' if m == 3 else '-1'
+            s += "=1" if m == 3 else "-1"
             tr = 1
         else:
             s += str(m)

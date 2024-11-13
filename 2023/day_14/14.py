@@ -15,7 +15,11 @@ DIRECTIONS = {
 }
 
 input_ = read_input()
-pos_map = {(row, col): input_[row][col] for col in range(len(input_[0])) for row in range(len(input_))}
+pos_map = {
+    (row, col): input_[row][col]
+    for col in range(len(input_[0]))
+    for row in range(len(input_))
+}
 CYCLES_N = 1000000000
 
 
@@ -31,7 +35,7 @@ def solve():
         tp = tuple(pos_map.items())
         if tp in seen:
             prev_i = seen[tp]
-            repeat_cycle = (i - prev_i)
+            repeat_cycle = i - prev_i
             multiplier = (CYCLES_N - i) // repeat_cycle
             print("seen", i, prev_i)
             i = i + repeat_cycle * multiplier

@@ -22,7 +22,7 @@ def day_change(lat, r):
             if k == 0:
                 zc += d[k]
             else:
-                d_next[k-1] = d[k]
+                d_next[k - 1] = d[k]
         d_next[6] += zc
         d_next[8] += zc
         d = copy(d_next)
@@ -32,7 +32,7 @@ def day_change(lat, r):
 # each lanternfish creates a new lanternfish once every 7 days
 spawn_period = 7
 
-laterns = list(map(int, read_input()[0].split(',')))
+laterns = list(map(int, read_input()[0].split(",")))
 laterns_to_add = []
 print(laterns)
 

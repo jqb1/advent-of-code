@@ -9,7 +9,7 @@ def read_input():
 
 # print(read_input())
 x1, x2, y1, y2 = 0, 0, 0, 0
-lines = [tuple(map(int, line.replace(" -> ", ",").split(','))) for line in read_input()]
+lines = [tuple(map(int, line.replace(" -> ", ",").split(","))) for line in read_input()]
 
 indices = defaultdict(int)
 
@@ -41,11 +41,11 @@ for line in lines:
                     cy -= 1
                     indices[(cx, cy)] += 1
     elif x1 == x2:
-        yr = range(y1, y2+1) if y1 < y2 else range(y2, y1+1)
+        yr = range(y1, y2 + 1) if y1 < y2 else range(y2, y1 + 1)
         for y_ in yr:
             indices[(x1, y_)] += 1
     elif y1 == y2:
-        xr = range(x1, x2+1) if x1 < x2 else range(x2, x1+1)
+        xr = range(x1, x2 + 1) if x1 < x2 else range(x2, x1 + 1)
         for x_ in xr:
             indices[(x_, y1)] += 1
 

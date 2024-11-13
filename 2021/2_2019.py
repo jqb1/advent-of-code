@@ -9,16 +9,17 @@ print(intcode)
 # intcode[1] = 12
 # intcode[2] = 2
 
+
 def compute(intcd):
     for i in range(0, len(intcd), 4):
         if intcd[i] == 99:
             break
         elif intcd[i] == 1:
-            pos1, pos2, where = intcd[i + 1:i + 4]
+            pos1, pos2, where = intcd[i + 1 : i + 4]
             intcd[where] = intcd[pos1] + intcd[pos2]
 
         elif intcd[i] == 2:
-            pos1, pos2, where = intcd[i + 1:i + 4]
+            pos1, pos2, where = intcd[i + 1 : i + 4]
             intcd[where] = intcd[pos1] * intcd[pos2]
 
 

@@ -36,10 +36,13 @@ def solve():
     crossings = set(l1_points).intersection(set(l2_points))
     print(crossings)
     p = next(iter(crossings))
-    lowest_steps = l1_points.index(p)+1 + l2_points.index(p)+1
+    lowest_steps = l1_points.index(p) + 1 + l2_points.index(p) + 1
     for cross in crossings:
-        lowest_steps = min(lowest_steps, l1_points.index(cross)+1 + l2_points.index(cross)+1)
+        lowest_steps = min(
+            lowest_steps, l1_points.index(cross) + 1 + l2_points.index(cross) + 1
+        )
     return lowest_steps
+
 
 solution = solve()
 print(solution)

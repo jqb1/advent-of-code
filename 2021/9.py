@@ -60,14 +60,25 @@ def explore_basin(heightmap, point, seen, max_row, max_col):
         size += 1
         basin.add(curr_point)
         for dr, dc in DIRECTIONS:
-            if curr_row + dr not in (max_row + 1, -1) and curr_col + dc not in (max_col + 1, -1) and \
-                    heightmap[curr_row + dr][curr_col + dc] < 9 and (curr_row + dr, curr_col + dc) not in seen:
+            if (
+                curr_row + dr not in (max_row + 1, -1)
+                and curr_col + dc not in (max_col + 1, -1)
+                and heightmap[curr_row + dr][curr_col + dc] < 9
+                and (curr_row + dr, curr_col + dc) not in seen
+            ):
                 q.append((curr_row + dr, curr_col + dc))
     if size > 50:
         for row in range(max_row + 1):
-            print('  '.join(
-                [f"\033[92m{heightmap[row][col]}\033[0m" if (row, col) in basin else f"{heightmap[row][col]}" for col in
-                 range(max_col + 1)]))
+            print(
+                "  ".join(
+                    [
+                        f"\033[92m{heightmap[row][col]}\033[0m"
+                        if (row, col) in basin
+                        else f"{heightmap[row][col]}"
+                        for col in range(max_col + 1)
+                    ]
+                )
+            )
         print(point, size)
         print(basin)
 

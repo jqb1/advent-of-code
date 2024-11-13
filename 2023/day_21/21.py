@@ -9,10 +9,10 @@ def read_input():
 
 MAX_STEPS = 262
 DIRECTION = {
-    's': (1, 0),
-    'n': (-1, 0),
-    'w': (0, -1),
-    'e': (0, 1),
+    "s": (1, 0),
+    "n": (-1, 0),
+    "w": (0, -1),
+    "e": (0, 1),
 }
 Point = namedtuple("Point", "row, col")
 
@@ -39,7 +39,12 @@ def solve():
             continue
         for _, (dr, dc) in DIRECTION.items():
             new_p = Point(cur_p.row + dr, cur_p.col + dc)
-            if new_p.row > max_row or new_p.row < 0 or new_p.col > max_col or new_p.col < 0:
+            if (
+                new_p.row > max_row
+                or new_p.row < 0
+                or new_p.col > max_col
+                or new_p.col < 0
+            ):
                 continue
                 # new_p, new_map_cords = wrap_up_map(new_p, map_cords, max_row, max_col)
                 # if map_[new_p.row][new_p.col] in {".", "S"}:

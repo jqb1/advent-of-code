@@ -42,10 +42,10 @@ def pipe_redirect(cur_dir, i, j, pipe):
 
 
 DIRECTION = {
-    'l': (0, -1),
-    'r': (0, 1),
-    'u': (-1, 0),
-    'd': (1, 0),
+    "l": (0, -1),
+    "r": (0, 1),
+    "u": (-1, 0),
+    "d": (1, 0),
 }
 
 row_bounds = {}
@@ -72,7 +72,9 @@ def solve():
     loop = {(s_i, s_j)}
     for dir_, delta in DIRECTION.items():
         di, dj = delta
-        if new_step := pipe_redirect(dir_, s_i + di, s_j + dj, pipes[s_i + di][s_j + dj]):
+        if new_step := pipe_redirect(
+            dir_, s_i + di, s_j + dj, pipes[s_i + di][s_j + dj]
+        ):
             ci, cj, cd = new_step
             path_pos.append((ci, cj))
             directions.append(cd)
@@ -98,7 +100,7 @@ def solve_2(pipes, loop):
     for i, row in enumerate(pipes):
         for j in range(len(row)):
             if pipes[i][j] == "." or (i, j) not in loop:
-                if check_closed(i, j+1, pipes[i], loop):
+                if check_closed(i, j + 1, pipes[i], loop):
                     c += 1
     print(c)
 

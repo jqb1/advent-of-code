@@ -14,8 +14,9 @@ def read_reports(reports):
     first = None
     nonzero = set()
     for num, line in enumerate(reports):
-        valve, flowrate, leads_ = re.match(r"Valve (\w\w) has flow rate=(\d+); tunnels* leads* to valves* (.+)",
-                                           line).groups()
+        valve, flowrate, leads_ = re.match(
+            r"Valve (\w\w) has flow rate=(\d+); tunnels* leads* to valves* (.+)", line
+        ).groups()
         if num == 0:
             first = valve
         valves[valve] = int(flowrate)
@@ -30,8 +31,8 @@ def main():
 
     valves, tunnels, current_valve, nonzero = read_reports(read_input())
     open_valves = []
-    print('valves', valves)
-    print('tunnels', tunnels)
+    print("valves", valves)
+    print("tunnels", tunnels)
     # q = deque([(current_valive, 30, 0, tuple(), current_valve)])
     distances = search_flow_rate(tunnels, valves)
     print(distances)
@@ -63,7 +64,7 @@ def search_flow_rate(tunnels, valves):
 
 
 def bfs_max_pressure(distances, valves, tlimit, turned):
-    q = deque([('AA', tlimit, turned, 0)])
+    q = deque([("AA", tlimit, turned, 0)])
     cur_max = 0
     max_path_turned = tuple()
     while q:
@@ -72,11 +73,11 @@ def bfs_max_pressure(distances, valves, tlimit, turned):
             if pres > cur_max:
                 cur_max = pres
             continue
-        if valve not in turned and minutes - 1 > 0 and valve != 'AA':
+        if valve not in turned and minutes - 1 > 0 and valve != "AA":
             minutes -= 1
             # pressure that will be produced from now up until the end of 30min time
             pres += minutes * valves[valve]
-            turned += (valve, )
+            turned += (valve,)
             if pres > cur_max:
                 print(cur_max, turned)
                 cur_max = pres
@@ -91,5 +92,5 @@ def bfs_max_pressure(distances, valves, tlimit, turned):
     return cur_max, max_path_turned
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

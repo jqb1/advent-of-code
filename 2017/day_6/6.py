@@ -36,6 +36,6 @@ def solve():
             i += 1
         print(blocks)
         cycles += 1
-    
 
-print(solve()) 
+
+print(solve())

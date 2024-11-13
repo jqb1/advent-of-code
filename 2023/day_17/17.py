@@ -8,18 +8,18 @@ def read_input():
 
 
 DIRECTION = {
-    'l': (0, -1),
-    'r': (0, 1),
-    'u': (-1, 0),
-    'd': (1, 0),
+    "l": (0, -1),
+    "r": (0, 1),
+    "u": (-1, 0),
+    "d": (1, 0),
 }
 
 POSSIBLE_TURNS = {
-    'l': ['u', 'd'],
-    'r': ['u', 'd'],
-    'u': ['l', 'r'],
-    'd': ['l', 'r'],
-    None: ['r', 'd'],  # starting point
+    "l": ["u", "d"],
+    "r": ["u", "d"],
+    "u": ["l", "r"],
+    "d": ["l", "r"],
+    None: ["r", "d"],  # starting point
 }
 
 
@@ -58,7 +58,12 @@ def solve():
             dr, dc = DIRECTION[turn]
             neighbor_p = (row + dr, col + dc)
             # if out of bounds
-            if neighbor_p[0] > max_row or neighbor_p[0] < 0 or neighbor_p[1] > max_col or neighbor_p[1] < 0:
+            if (
+                neighbor_p[0] > max_row
+                or neighbor_p[0] < 0
+                or neighbor_p[1] > max_col
+                or neighbor_p[1] < 0
+            ):
                 continue
             # if (cost := heat + heat_map[neighbor_p[0]][neighbor_p[1]]) < unvisited[neighbor_p]:
             cost = heat + heat_map[neighbor_p[0]][neighbor_p[1]]

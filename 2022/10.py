@@ -17,7 +17,14 @@ for line in read_input():
     # print(line)
     cycles_td = 1 if line[0] == "noop" else 2
     for cycle in range(cycles_td):
-        if any(pixel == cycle_now % 40 for pixel in (X-1, X, X+1,)):
+        if any(
+            pixel == cycle_now % 40
+            for pixel in (
+                X - 1,
+                X,
+                X + 1,
+            )
+        ):
             screen += "#"
         else:
             screen += "."

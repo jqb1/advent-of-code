@@ -22,13 +22,25 @@ def find_end_square(end_square):
     direction = (1, 0)
     steps = 0
     point_to_val = {(0, 0): 1}
-    adjacent_list = [(-1, 1), (0, 1), (1, 1), (-1, 0), (1, 0), (-1, -1), (0, -1), (1, -1)]
+    adjacent_list = [
+        (-1, 1),
+        (0, 1),
+        (1, 1),
+        (-1, 0),
+        (1, 0),
+        (-1, -1),
+        (0, -1),
+        (1, -1),
+    ]
 
     while sq_num < int(end_square):
         if direction == (1, 0):  # if previous was right, increase by 1 to right,
             x += 1
             steps += 2
-            sq_num = sum(point_to_val.get((x+adj_x, y+adj_y), 0) for adj_x, adj_y in adjacent_list)
+            sq_num = sum(
+                point_to_val.get((x + adj_x, y + adj_y), 0)
+                for adj_x, adj_y in adjacent_list
+            )
             point_to_val[(x, y)] = sq_num
         direction = next(directions)
         dx, dy = direction
@@ -40,7 +52,10 @@ def find_end_square(end_square):
             # part 1
             # sq_num += 1
             # part 2
-            sq_num = sum(point_to_val.get((x+adj_x, y+adj_y), 0) for adj_x, adj_y in adjacent_list)
+            sq_num = sum(
+                point_to_val.get((x + adj_x, y + adj_y), 0)
+                for adj_x, adj_y in adjacent_list
+            )
             print(sq_num)
             point_to_val[(x, y)] = sq_num
             if sq_num > end_square:

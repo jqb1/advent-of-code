@@ -9,27 +9,27 @@ def read_input():
 
 def main():
     # faster lookup
-    closing_chars = {')', ']', '}', '>'}
-    opening_chars = {'(', '[', '{', '<'}
+    closing_chars = {")", "]", "}", ">"}
+    opening_chars = {"(", "[", "{", "<"}
 
     chunk_open_to_close = {
-        '(': ')',
-        '[': ']',
-        '{': '}',
-        '<': '>',
+        "(": ")",
+        "[": "]",
+        "{": "}",
+        "<": ">",
     }
     points_sum = solve_part1(opening_chars, closing_chars, chunk_open_to_close)
-    print('part1:', points_sum)
+    print("part1:", points_sum)
     solve_part2(opening_chars, closing_chars, chunk_open_to_close)
 
 
 def solve_part1(opening_chars, closing_chars, chunk_open_to_close):
-    """ checking the corrupted lines """
+    """checking the corrupted lines"""
     points = {
-        ')': 3,
-        ']': 57,
-        '}': 1197,
-        '>': 25137,
+        ")": 3,
+        "]": 57,
+        "}": 1197,
+        ">": 25137,
     }
     points_sum = 0
     for line in read_input():
@@ -46,12 +46,12 @@ def solve_part1(opening_chars, closing_chars, chunk_open_to_close):
 
 
 def solve_part2(opening_chars, closing_chars, chunk_open_to_close):
-    """ finishing unfinised lines """
+    """finishing unfinised lines"""
     points = {
-        ')': 1,
-        ']': 2,
-        '}': 3,
-        '>': 4,
+        ")": 1,
+        "]": 2,
+        "}": 3,
+        ">": 4,
     }
     scores = []
     for line in read_input():
@@ -73,8 +73,8 @@ def solve_part2(opening_chars, closing_chars, chunk_open_to_close):
                 score = score * 5 + points[closing_token]
             scores.append(score)
     print(sorted(scores))
-    print("part2:", sorted(scores)[len(scores)//2])
+    print("part2:", sorted(scores)[len(scores) // 2])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

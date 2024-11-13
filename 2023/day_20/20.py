@@ -53,13 +53,18 @@ def solve():
                 high_c += 1
             if receiver == "broadcaster":
                 new_targets = broadcaster
-                out_signals = prepare_out_signals(source=receiver, signal=signal, outputs=new_targets)
+                out_signals = prepare_out_signals(
+                    source=receiver, signal=signal, outputs=new_targets
+                )
             elif receiver in flip_flops:
                 out_signal = handle_ff_signal(signal, flip_flops[receiver])
                 if not out_signal:
                     continue
-                out_signals = prepare_out_signals(source=receiver, signal=out_signal,
-                                                  outputs=flip_flops[receiver]["outputs"])
+                out_signals = prepare_out_signals(
+                    source=receiver,
+                    signal=out_signal,
+                    outputs=flip_flops[receiver]["outputs"],
+                )
             elif receiver not in conjunctions:
                 if receiver == "rx" and signal == "low":
                     print("part2:", i)
@@ -67,8 +72,11 @@ def solve():
                 continue
             else:
                 out_signal = handle_conj_signal(signal, conjunctions[receiver], sender)
-                out_signals = prepare_out_signals(source=receiver, signal=out_signal,
-                                                  outputs=conjunctions[receiver]["outputs"])
+                out_signals = prepare_out_signals(
+                    source=receiver,
+                    signal=out_signal,
+                    outputs=conjunctions[receiver]["outputs"],
+                )
             q.extend(out_signals)
     print(low_c, high_c, f"res:{low_c*high_c}")
 

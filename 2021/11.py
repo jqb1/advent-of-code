@@ -7,16 +7,7 @@ def read_input():
     return lines
 
 
-DIRECTIONS = (
-    (0, 1),
-    (0, -1),
-    (1, 0),
-    (-1, 0),
-    (-1, -1),
-    (-1, 1),
-    (1, -1),
-    (1, 1)
-)
+DIRECTIONS = ((0, 1), (0, -1), (1, 0), (-1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1))
 
 
 def main():
@@ -35,16 +26,20 @@ def main():
             for col in range(max_c + 1):
                 if (row, col) in flashed:
                     continue
-                flashed, to_check, flash = increase_energy(row, col, flashed, octopus_map, to_check, max_r, max_c)
+                flashed, to_check, flash = increase_energy(
+                    row, col, flashed, octopus_map, to_check, max_r, max_c
+                )
                 flash_count += flash
         while to_check:
             row_, col_ = to_check.popleft()
             if (row_, col_) in flashed:
                 continue
-            flashed, to_check, flash = increase_energy(row_, col_, flashed, octopus_map, to_check, max_r, max_c)
+            flashed, to_check, flash = increase_energy(
+                row_, col_, flashed, octopus_map, to_check, max_r, max_c
+            )
             flash_count += flash
         if len(flashed) == (max_r + 1) * (max_c + 1):
-            print('all flashed in step', step)
+            print("all flashed in step", step)
             synchronized = True
         if step == 100:
             print(flash_count)

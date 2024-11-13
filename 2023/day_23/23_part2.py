@@ -8,10 +8,10 @@ def read_input():
 
 
 DIRECTIONS = {
-    '<': (0, -1),
-    '>': (0, 1),
-    '^': (-1, 0),
-    'v': (1, 0),
+    "<": (0, -1),
+    ">": (0, 1),
+    "^": (-1, 0),
+    "v": (1, 0),
 }
 
 
@@ -50,7 +50,10 @@ def bfs_distances(cr, crossings, grid):
             distances[node] = steps
             continue
         for dr, dc in DIRECTIONS.values():
-            if 0 <= (new_r := node[0] + dr) <= max_row and 0 <= (new_c := node[1] + dc) <= max_col:
+            if (
+                0 <= (new_r := node[0] + dr) <= max_row
+                and 0 <= (new_c := node[1] + dc) <= max_col
+            ):
                 if (new_r, new_c) not in path and grid[new_r][new_c] != "#":
                     q.append(((new_r, new_c), steps + 1, path | {(node[0], node[1])}))
     return distances
@@ -69,7 +72,13 @@ def find_crossings(grid):
             for dr, dc in DIRECTIONS.values():
                 nr = row + dr
                 nc = col + dc
-                if nr > max_row or nr < 0 or nc > max_col or nc < 0 or grid[nr][nc] == "#":
+                if (
+                    nr > max_row
+                    or nr < 0
+                    or nc > max_col
+                    or nc < 0
+                    or grid[nr][nc] == "#"
+                ):
                     continue
                 paths_c += 1
             if paths_c > 2:
