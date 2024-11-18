@@ -3,14 +3,14 @@ from collections import deque
 
 def read_input():
     with open("./input.txt") as f:
-        lines = [line.rstrip().split(' <-> ') for line in f]
+        lines = [line.rstrip().split(" <-> ") for line in f]
     return lines
 
 
 def solve():
     inp = read_input()
     connected = set()
-    neighbors = {line[0]: line[1].split(', ') for line in inp}
+    neighbors = {line[0]: line[1].split(", ") for line in inp}
     group_cnt = 0
     for n in neighbors:
         if n in connected:

@@ -6,23 +6,23 @@ def read_input():
 
 DIR = {
     # direction to delta row, col
-    'n': (0, 2),
-    'ne': (1, 1),
-    'nw': (-1, 1),
-    's': (0, -2),
-    'se': (1, -1),
-    'sw': (-1, -1),
+    "n": (0, 2),
+    "ne": (1, 1),
+    "nw": (-1, 1),
+    "s": (0, -2),
+    "se": (1, -1),
+    "sw": (-1, -1),
 }
-'''
+"""
 structure: 
     x | 0 | x
     0 | x | 0
     x | 0 | x
-'''
+"""
 
 
 def solve():
-    inp = read_input()[0].split(',')
+    inp = read_input()[0].split(",")
     cur_row, cur_col = 0, 0
     max_d = 0
     for step in inp:

@@ -1,6 +1,6 @@
 def read_input():
     with open("./input.txt") as f:
-        lines = [line.rstrip().split(': ') for line in f]
+        lines = [line.rstrip().split(": ") for line in f]
     return lines
 
 
