@@ -16,7 +16,7 @@ def solve():
     # p2
     a_q, b_q = deque([]), deque([])
     comparisons = 0
-    while comparisons <= (5 * 10 ** 6):
+    while comparisons <= (5 * 10**6):
         a_val = (a_val * a_factor) % div_val
         b_val = (b_val * b_factor) % div_val
         if a_val % 4 == 0:
