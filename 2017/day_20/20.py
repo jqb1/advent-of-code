@@ -18,7 +18,7 @@ def puzzle():
         p, v, a = map(lambda x: tuple(re.findall(r"(-?\d+)", x)), line)
         particles.append((tuple(map(int, p)), tuple(map(int, v)), tuple(map(int, a))))
 
-    for tick in range(10000):
+    for tick in range(50):
         new_particles = []
         pc = Counter([p for p, v, a in particles])
         for p, v, a in particles:
