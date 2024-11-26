@@ -1,5 +1,6 @@
-import re
 from collections import Counter
+
+from utils import ints, vadd
 
 
 def read_input():
@@ -8,14 +9,11 @@ def read_input():
     return lines
 
 
-vadd = lambda v1, v2: tuple([x1 + x2 for x1, x2 in zip(v1, v2)])
-
-
 def puzzle():
     inp = read_input()
     particles = []
     for i, line in enumerate(inp):
-        p, v, a = map(lambda x: tuple(re.findall(r"(-?\d+)", x)), line)
+        p, v, a = map(lambda x: ints(x), line)
         particles.append((tuple(map(int, p)), tuple(map(int, v)), tuple(map(int, a))))
 
     for tick in range(50):
