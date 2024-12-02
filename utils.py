@@ -29,8 +29,11 @@ def submit(answer: int | str, part=1):
         os.environ["user"],
     )
     ans = (
-        str(input(
-            f"==> Submitting day \033[38;5;15m{day}\033[0m part \033[38;5;15m{part}\033[0m, answer \033[38;5;15m{answer}?\033[0m y/N/2"))
+        str(
+            input(
+                f"==> Submitting day \033[38;5;15m{day}\033[0m part \033[38;5;15m{part}\033[0m, answer \033[38;5;15m{answer}?\033[0m y/N/2"
+            )
+        )
         .lower()
         .strip()
     )
@@ -66,7 +69,11 @@ def read_input(test=False) -> List[str]:
         os.environ["day"],
         os.environ["year"],
     )
-    filename = f"{DIR_PATH}/{year}/day_{day}/input.txt" if not test else f"{DIR_PATH}/{year}/day_{day}/input_t.txt"
+    filename = (
+        f"{DIR_PATH}/{year}/day_{day}/input.txt"
+        if not test
+        else f"{DIR_PATH}/{year}/day_{day}/input_t.txt"
+    )
     if not os.path.isfile(filename) and not test:
         _download_input()
     with open(filename) as f:

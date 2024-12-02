@@ -28,7 +28,7 @@ def replace_n(line):
         "eight": 8,
         "nine": 9,
     }
-    reg = re.findall('(?=(\d|one|two|three|four|five|six|seven|eight|nine))', line)
+    reg = re.findall("(?=(\d|one|two|three|four|five|six|seven|eight|nine))", line)
     first, last = reg[0], reg[-1]
     first = str(digits[first]) if first in digits else first
     last = str(digits[last]) if last in digits else last

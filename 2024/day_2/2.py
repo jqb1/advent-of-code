@@ -18,7 +18,7 @@ def solve():
 
 def validate_more(line):
     for i in range(len(line)):
-        if check_correct(line[:i] + line[i + 1:]):
+        if check_correct(line[:i] + line[i + 1 :]):
             return True
     return False
 
@@ -26,7 +26,7 @@ def validate_more(line):
 def check_correct(line):
     t = set()
     for i, el in enumerate(line):
-        diff = (line[i - 1] - el)
+        diff = line[i - 1] - el
         if i == 0:
             continue
         t.add(diff < 0)
@@ -37,5 +37,5 @@ def check_correct(line):
     return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solve()
