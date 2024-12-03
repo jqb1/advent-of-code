@@ -1,6 +1,4 @@
 import re
-from collections import defaultdict, deque
-
 from utils import read_input, submit
 
 

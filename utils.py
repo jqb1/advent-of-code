@@ -6,6 +6,27 @@ import requests
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
+# direction delta in 2x2 grid
+DIRECTION = {
+    "l": (0, -1),
+    "r": (0, 1),
+    "u": (-1, 0),
+    "d": (1, 0),
+}
+
+TURN = {
+    # d = current direction
+    # (d, turn): (result)
+    ("r", "r"): "d",
+    ("r", "l"): "u",
+    ("l", "l"): "d",
+    ("l", "r"): "u",
+    ("u", "r"): "r",
+    ("u", "l"): "l",
+    ("d", "l"): "r",
+    ("d", "r"): "l",
+}
+
 
 def ints(line: str) -> tuple:
     return tuple(re.findall(r"(-?\d+)", line))
