@@ -24,7 +24,7 @@ def solve():
             print(r)
         i += 1
         l = list(chain.from_iterable(image))
-        print(l.count('#'))
+        print(l.count("#"))
 
 
 def flip_pat(pat):
@@ -75,7 +75,7 @@ def divide_evenly(sq_size, grid, patterns):
     for si in range(0, len(squares), size_in_sq):
         for row in range(sq_size):
             new_row = []
-            for s in range(si, si+size_in_sq):
+            for s in range(si, si + size_in_sq):
                 new_row.extend(squares[s][row])
             new_img.append(new_row)
     return new_img
