@@ -4,8 +4,9 @@ from utils import read_input
 
 
 def solve_p1():
-    grid = defaultdict(str) | {(r, c): l for r, row in enumerate(read_input())
-                               for c, l in enumerate(row)}
+    grid = defaultdict(str) | {
+        (r, c): l for r, row in enumerate(read_input()) for c, l in enumerate(row)
+    }
     xmas = "XMAS"
 
     pos_d = (0, 1, -1)
@@ -22,8 +23,9 @@ def solve_p1():
 
 
 def solve_p2():
-    grid = defaultdict(str) | {(r, c): l for r, row in enumerate(read_input())
-                               for c, l in enumerate(row)}
+    grid = defaultdict(str) | {
+        (r, c): l for r, row in enumerate(read_input()) for c, l in enumerate(row)
+    }
     ans = 0
     gk = list(grid.keys())
     pos_w = [list("MAS"), list("SAM")]

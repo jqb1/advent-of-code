@@ -15,9 +15,9 @@ def solve():
         matches = len(set(m_nums) & set(w_nums))
         cur_copies = c_to_copies[cid]
         if cid <= len(lines):
-            for i in range(cid, cid+matches+1):
+            for i in range(cid, cid + matches + 1):
                 c_to_copies[i] += cur_copies
-    print(sum(c_to_copies.values())/2)
+    print(sum(c_to_copies.values()) / 2)
 
 
 if __name__ == "__main__":
