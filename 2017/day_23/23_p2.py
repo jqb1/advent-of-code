@@ -3,6 +3,7 @@
 # asm program counts non-prime numbers between b and c step 17
 # asm input https://adventofcode.com/2017/day/23/input
 
+
 def solve():
     b = 109300
     c = 126300
