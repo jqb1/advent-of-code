@@ -84,7 +84,7 @@ def submit(answer: int | str, part=1):
                 print(line)
 
 
-def read_input(test=False) -> List[str]:
+def read_input(test=False) -> str:
     _init_env()
     day, year = (
         os.environ["day"],
@@ -98,8 +98,8 @@ def read_input(test=False) -> List[str]:
     if not os.path.isfile(filename) and not test:
         _download_input()
     with open(filename) as f:
-        lines = [line.rstrip() for line in f]
-    return lines
+        input_ = f.read()
+    return input_
 
 
 def _download_input():

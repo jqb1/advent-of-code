@@ -10,7 +10,7 @@ DIRECTION = {
 
 
 def solve():
-    lines = read_input()
+    lines = read_input().split('\n')
     ans = 0
     grid = {}
     trailheads = []
@@ -47,7 +47,7 @@ def solve():
 
 
 def solve_p2():
-    lines = read_input()
+    lines = read_input().split('\n')
     ans = 0
     grid = {}
     trailheads = []

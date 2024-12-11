@@ -23,7 +23,7 @@ TURN = {
 
 def solve_p1_p2():
     grid = {}
-    lines = read_input()
+    lines = read_input().split('\n')
     start_p = None
     for r, row in enumerate(lines):
         for c, col in enumerate(list(row)):

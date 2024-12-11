@@ -2,7 +2,7 @@ from utils import read_input, submit
 
 
 def solve():
-    lines = read_input()
+    lines = read_input().split('\n')
     print(lines)
     ans = 0
     for line in lines:

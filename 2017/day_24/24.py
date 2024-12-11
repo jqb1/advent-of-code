@@ -4,7 +4,7 @@ from utils import read_input, submit
 
 
 def solve():
-    lines = read_input(0)
+    lines = read_input(0).split('\n')
     q = deque([])
     ports = defaultdict(list)
     for line in lines:

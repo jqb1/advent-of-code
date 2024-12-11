@@ -5,7 +5,7 @@ from utils import read_input, submit
 
 
 def solve():
-    instructions = [line.rstrip().split() for line in read_input()]
+    instructions = [line.rstrip().split() for line in read_input().split('\n')]
     t1 = start_program(instructions, 0)
     print("finished", t1)
 

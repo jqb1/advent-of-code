@@ -6,7 +6,7 @@ from utils import read_input
 
 def solve():
     patterns = {}
-    for line in read_input():
+    for line in read_input().split('\n'):
         inp_p, out_p = line.split(" => ")
         cur_pat = tuple(map(tuple, inp_p.split("/")))
         out_pat = tuple(map(tuple, out_p.split("/")))

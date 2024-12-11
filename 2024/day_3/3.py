@@ -3,7 +3,7 @@ from utils import read_input, submit
 
 
 def solve():
-    lines = read_input()
+    lines = read_input().split('\n')
     ans = 0
     can_mul = True
     for line in lines:
