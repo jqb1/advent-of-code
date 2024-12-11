@@ -5,20 +5,8 @@ from utils import read_input, submit
 
 def solve():
     stones = list(map(int, read_input()[0].split()))
-    for _ in range(25):
-        new_stones = []
-        for i, stone in enumerate(stones):
-            if stone == 0:
-                new_stones.append(1)
-            elif len(str(stone)) % 2 == 0:
-                sstone = str(stone)
-                lp, rp = int(sstone[:len(sstone) // 2]), int(sstone[len(sstone) // 2:])
-                new_stones.extend([lp, rp])
-            else:
-                new_stones.append(stone * 2024)
-        stones = new_stones
-        print(_)
-    submit(len(stones), 1)
+    res = sum(dfs_stones(stone, 25) for stone in stones)
+    submit(res, 2)
 
 
 def solve_p2():
