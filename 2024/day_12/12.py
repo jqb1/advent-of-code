@@ -22,7 +22,7 @@ def solve():
             continue
         perim, area = explore_area((r, c), grid, seen)
         ans += perim * area
-    submit(ans, 1)
+    print("part1:", ans)
 
 
 def explore_area(cur_p, grid, seen):
@@ -61,7 +61,7 @@ def solve_p2():
             continue
         sides, area = explore_area_2((r, c), grid, seen)
         ans += sides * area
-    submit(ans, 2)
+    print("p2:", ans)
 
 
 def explore_area_2(cur_p, grid, seen):
@@ -80,35 +80,29 @@ def explore_area_2(cur_p, grid, seen):
             pp = (r + dr, c + dc)
             if pp in grid and grid[pp] == reg_id:
                 q.append(pp)
-            # if no neighbor, check if new side
+            # we can only insert plot if no neighbor in that direction
             else:
+                # row if horizontal plot, col if vertical
                 axis = "row" if dr != 0 else "col"
+                # check if the new plot has neighbors
+                # if no neighbors then it's a new side
                 if check_new_side(pp, fence, axis, d):
                     sides += 1
-                fence[pp, d, axis] = reg_id
+                fence[pp, d] = reg_id
     return sides, area
 
 
 def check_new_side(pp, fence, axis, d):
     r, c = pp
     if axis == "row":
-        # left
-        if ((r, c - 1), d, axis) in fence:
-            return False
-        # right
-        elif ((r, c + 1), d, axis) in fence:
+        if ((r, c - 1), d) in fence or ((r, c + 1), d) in fence:
             return False
         return True
-    else:
-        # down
-        if ((r - 1, c), d, axis) in fence:
-            return False
-        # up
-        elif ((r + 1, c), d, axis) in fence:
-            return False
-        return True
+    if ((r - 1, c), d) in fence or ((r + 1, c), d) in fence:
+        return False
+    return True
 
 
 if __name__ == "__main__":
-    # solve()
+    solve()
     solve_p2()
