@@ -4,12 +4,12 @@ from utils import read_input, submit
 
 
 def solve():
-    inp = read_input().split('\n\n')
-    state = inp[0].split('\n')[0].split()[-1][:-1]
-    steps = int(inp[0].split('\n')[1].split()[-2])
+    inp = read_input().split("\n\n")
+    state = inp[0].split("\n")[0].split()[-1][:-1]
+    steps = int(inp[0].split("\n")[1].split()[-2])
     conditions = {}
     for cond in inp[1:]:
-        lines = cond.split('\n')
+        lines = cond.split("\n")
         cur_s = lines[0][-2]
         conditions[cur_s] = {0: [], 1: []}
         current, write, move, n_state = None, None, None, None
@@ -33,7 +33,7 @@ def solve():
         instr = conditions[state]
         write, move, new_state = instr[tape[pos]]
         tape[pos] = int(write)
-        pos += (1 if move == "right" else -1)
+        pos += 1 if move == "right" else -1
         state = new_state
         step += 1
     ans = sum(tape.values())

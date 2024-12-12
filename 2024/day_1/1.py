@@ -4,7 +4,7 @@ from utils import read_input, submit
 
 
 def solve():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     print(lines)
     l1 = []
     l2 = defaultdict(int)

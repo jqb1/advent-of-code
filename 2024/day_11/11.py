@@ -23,7 +23,7 @@ def dfs_stones(stone, steps):
         return dfs_stones(1, steps - 1)
     elif len(str(stone)) % 2 == 0:
         sstone = str(stone)
-        lp, rp = int(sstone[:len(sstone) // 2]), int(sstone[len(sstone) // 2:])
+        lp, rp = int(sstone[: len(sstone) // 2]), int(sstone[len(sstone) // 2 :])
         return sum(dfs_stones(stone, steps - 1) for stone in (lp, rp))
     else:
         return dfs_stones(stone * 2024, steps - 1)

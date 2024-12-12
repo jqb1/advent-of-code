@@ -4,7 +4,7 @@ from utils import read_input, submit
 
 
 def solve():
-    lines = read_input(0).split('\n')
+    lines = read_input(0).split("\n")
     q = deque([])
     ports = defaultdict(list)
     for line in lines:
@@ -27,7 +27,7 @@ def solve():
         for posp in ports[p]:
             if (p, posp) in used or (posp, p) in used:
                 continue
-            q.append((posp, st + p, path + f', {p},{posp}', used | {(p, posp)}))
+            q.append((posp, st + p, path + f", {p},{posp}", used | {(p, posp)}))
 
     submit(strongest, 1)
 
@@ -63,7 +63,7 @@ def solve_p2():
         for posp in ports[p]:
             if (p, posp) in used or (posp, p) in used:
                 continue
-            q.append((posp, st + p, path + f', {p},{posp}', used | {(p, posp)}))
+            q.append((posp, st + p, path + f", {p},{posp}", used | {(p, posp)}))
 
     submit(max(longest), 2)
 

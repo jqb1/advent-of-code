@@ -31,7 +31,7 @@ def solve_p1():
 
 
 def solve_p2():
-    line = read_input().split('\n')[0]
+    line = read_input().split("\n")[0]
     ans = 0
     file_map = []
     free_map = []

@@ -4,7 +4,7 @@ from utils import read_input, submit, ints
 
 
 def solve_p1():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     ans = 0
 
     before = defaultdict(list)
@@ -37,7 +37,7 @@ def solve_p1():
 
 
 def solve_p2():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     ans = 0
 
     before = defaultdict(list)

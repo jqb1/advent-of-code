@@ -5,7 +5,7 @@ from utils import read_input
 
 
 def solve():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     ans = 0
     for line in lines:
         tv, eq = line.split(":")

@@ -2,7 +2,7 @@ from utils import read_input, submit
 
 
 def solve():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     grid = {}
     antennas = {}
     antinodes = set()
@@ -37,7 +37,7 @@ def print_map(grid, antinodes):
 
 
 def solve_p2():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     grid = {}
     antennas = {}
     antinodes = set()

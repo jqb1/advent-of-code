@@ -11,7 +11,7 @@ signal_strengths = []
 
 screen = ""
 line_len = 0
-for line in read_input().split('\n'):
+for line in read_input().split("\n"):
     print(line, cycle_now, X)
     line = line.split()
     # print(line)

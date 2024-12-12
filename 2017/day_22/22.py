@@ -33,7 +33,7 @@ NEW_STATE = {
 
 
 def solve():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     grid = defaultdict(lambda: ".")
     cur_p = ("u", len(lines) // 2, len(lines[0]) // 2)
     for cr, row in enumerate(lines):
