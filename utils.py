@@ -29,7 +29,7 @@ TURN = {
 
 
 def ints(line: str) -> tuple:
-    return tuple(re.findall(r"(-?\d+)", line))
+    return tuple(map(int, tuple(re.findall(r"(-?\d+)", line))))
 
 
 def digits(line: str) -> tuple:
