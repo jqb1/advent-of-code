@@ -1,7 +1,8 @@
 from utils import read_input, ints
 
+
 def solve():
-    buttons = read_input().split('\n\n')
+    buttons = read_input().split("\n\n")
     ans = 0
 
     prizes = {}
@@ -27,7 +28,7 @@ def solve():
 
 
 def solve_p2():
-    buttons = read_input().split('\n\n')
+    buttons = read_input().split("\n\n")
     ans = 0
 
     prizes = {}
