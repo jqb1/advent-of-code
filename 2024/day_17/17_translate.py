@@ -26,6 +26,7 @@ for n in range(len(program)):
         pos_val += 1
         out = run(pos_val)
         if out and out == program[-n - 1 :]:
+            print("found", i)
             cur_a = pos_val
             print(out, pos_val, bin(cur_a))
             break
