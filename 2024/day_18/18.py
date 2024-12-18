@@ -1,4 +1,3 @@
-from collections import deque
 from heapq import heappop
 
 from utils import read_input, ints
@@ -14,15 +13,31 @@ DIRECTION = {
 def solve():
     lines = read_input().split("\n")
     max_r, max_c = 70, 70
-    memory = {(row, col): "." for row in range(max_r + 1) for col in range(max_c + 1)}
-    for i in range(2500, len(lines)):
-        for line in lines[:i]:
+
+    def run(last_i):
+        memory = {
+            (row, col): "." for row in range(max_r + 1) for col in range(max_c + 1)
+        }
+        for line in lines[: last_i + 1]:
             x, y = ints(line)
             memory[y, x] = "#"
         steps = find_path(max_r, max_c, memory)
         if not steps:
-            print("ans", lines[i - 1])
-            break
+            return False
+        return True
+
+    def bin_search(min_i, max_i):
+        while min_i < max_i:
+            mid = (min_i + max_i) // 2
+            if not run(mid):
+                max_i = mid
+            else:
+                min_i = mid + 1
+        return min_i
+
+    min_b = bin_search(1024, len(lines) - 1)
+    print(min_b)
+    print("ans", lines[min_b])
 
 
 def find_path(max_r, max_c, memory):
@@ -42,10 +57,6 @@ def find_path(max_r, max_c, memory):
         for dr, dc in DIRECTION:
             if (r + dr, c + dc) in memory and memory[r + dr, c + dc] != "#":
                 q.append((steps + 1, (r + dr, c + dc), path | {(r + dr, c + dc)}))
-    #
-    # for r in range(max_r + 1):
-    #     print(["O" if (r, c) in path else memory[r, c] for c in range(max_c + 1)])
-
     return min_steps
 
 
