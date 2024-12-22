@@ -1,0 +1,11 @@
+/Users/jkoziol/Documents/dev/venv/bin/python3 /Users/jkoziol/Documents/dev/advent-of-code-2022/2024/day_21/21.py 
+['<^<A>A^>^AvvvA', '^<<A>A^>^AvvvA', '<^<A>A^^>AvvvA', '^<<A>A^^>AvvvA', '<^<A>A>^^AvvvA', '^<<A>A>^^AvvvA']
+['<^<A^^Av>>AvvA', '^<<A^^Av>>AvvA', '<^<A^^A>v>AvvA', '^<<A^^A>v>AvvA', '<^<A^^A>>vAvvA', '^<<A^^A>>vAvvA']
+['^^^A<AvAv>vA', '^^^A<AvAvv>A', '^^^A<AvA>vvA']
+['<^<A^^Av>vvA>A', '^<<A^^Av>vvA>A', '<^<A^^A>vvvA>A', '^<<A^^A>vvvA>A', '<^<A^^Avv>vA>A', '^<<A^^Avv>vA>A']
+['^^<AvA^^Av>vvA', '<^^AvA^^Av>vvA', '^<^AvA^^Av>vvA', '^^<AvA^^A>vvvA', '<^^AvA^^A>vvvA', '^<^AvA^^A>vvvA', '^^<AvA^^Avvv>A', '<^^AvA^^Avvv>A', '^<^AvA^^Avvv>A', '^^<AvA^^Avv>vA', '<^^AvA^^Avv>vA', '^<^AvA^^Avv>vA']
+
+Process finished with exit code 0
+
+
+

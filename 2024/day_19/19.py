@@ -21,7 +21,7 @@ def is_pos(design, towels):
         return 1
     return sum(
         [
-            is_pos(design[len(tow):], towels)
+            is_pos(design[len(tow) :], towels)
             for tow in towels
             if design[: len(tow)] == tow
         ]
