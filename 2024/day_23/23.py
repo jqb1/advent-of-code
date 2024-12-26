@@ -4,10 +4,10 @@ from utils import read_input
 
 
 def solve():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     graph = defaultdict(list)
     for line in lines:
-        from_, to = line.split('-')
+        from_, to = line.split("-")
         graph[from_].append(to)
         graph[to].append(from_)
 
@@ -17,7 +17,7 @@ def solve():
         sets_of_3.update(paths)
     ans = 0
     for s in sets_of_3:
-        if any(n for n in s if n[0] == 't'):
+        if any(n for n in s if n[0] == "t"):
             ans += 1
     print(sets_of_3)
     print(ans)

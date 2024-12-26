@@ -6,7 +6,7 @@ SEQUENCES = Counter()
 
 
 def solve():
-    lines = read_input().split('\n')
+    lines = read_input().split("\n")
     ans = 0
     for line in lines:
         ans += calc_secret(int(line))

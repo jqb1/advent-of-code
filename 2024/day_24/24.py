@@ -5,10 +5,10 @@ from utils import read_input, ints
 
 
 def solve():
-    ws, gs = read_input().rstrip().split('\n\n')
-    wires = {ws.split()[0][:-1]: int(ws.split()[1]) for ws in ws.split('\n')}
-    for line in gs.split('\n'):
-        if 'x' in line and 'y' in line and "XOR" in line:
+    ws, gs = read_input().rstrip().split("\n\n")
+    wires = {ws.split()[0][:-1]: int(ws.split()[1]) for ws in ws.split("\n")}
+    for line in gs.split("\n"):
+        if "x" in line and "y" in line and "XOR" in line:
             int_c = ints(line)[0], ints(line)[1]
             if len(set(int_c)) > 1:
                 print("different")
@@ -25,16 +25,16 @@ def solve():
         for y in range(1, 10000):
             # this helped me find the wrong bits by hand and looking into the input to reverse engineer what's wrong
             # I'll update it later to detect it automatically
-            x_wires = num_to_bin_wires('x', x)
-            y_wires = num_to_bin_wires('y', y)
+            x_wires = num_to_bin_wires("x", x)
+            y_wires = num_to_bin_wires("y", y)
 
             out_z_int = system(gs, x_wires | y_wires)
-            expected = num_to_bin_wires('z', x+y)
-            actual = num_to_bin_wires('z', out_z_int)
+            expected = num_to_bin_wires("z", x + y)
+            actual = num_to_bin_wires("z", out_z_int)
             print(f"\nadding: {x},{y}")
-            print('          ', x_wires)
-            print('          ', y_wires)
-            print("should be:", expected, "in dec:", x+y)
+            print("          ", x_wires)
+            print("          ", y_wires)
+            print("should be:", expected, "in dec:", x + y)
             print("is:       ", actual, "in dec:", out_z_int)
             if actual != expected:
                 print("not equal")
@@ -42,14 +42,14 @@ def solve():
 
 
 def num_to_bin_wires(wire_name, num):
-    num_bin = f'{num:045b}'
-    return {f'{wire_name}{i:02d}': int(n) for i, n in enumerate(num_bin[::-1])}
+    num_bin = f"{num:045b}"
+    return {f"{wire_name}{i:02d}": int(n) for i, n in enumerate(num_bin[::-1])}
 
 
 def system(gs, wires):
-    all_zs = {line.split()[-1] for line in gs.split('\n') if line.split()[-1][0] == "z"}
+    all_zs = {line.split()[-1] for line in gs.split("\n") if line.split()[-1][0] == "z"}
     while True:
-        for line in gs.split('\n'):
+        for line in gs.split("\n"):
             w1, gate_name, w2, _, w_out = line.split()
             if w1 in wires and w2 in wires:
                 wires[w_out] = gate(gate_name, wires[w1], wires[w2])
@@ -65,7 +65,7 @@ def get_zs(wires, all_zs):
     out = []
     for k in sorted(zs)[::-1]:
         out.append(str(zs[k]))
-    return int(''.join(out), 2) if out else 0
+    return int("".join(out), 2) if out else 0
 
 
 def gate(name, w1, w2):
