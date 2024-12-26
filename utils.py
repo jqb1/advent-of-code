@@ -6,7 +6,7 @@ import requests
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
-# direction delta in 2x2 grid
+# direction delta in 2D grid
 DIRECTION = {
     "l": (0, -1),
     "r": (0, 1),
